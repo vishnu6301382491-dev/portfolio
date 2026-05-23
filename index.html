@@ -5,16 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vishnu | Portfolio</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f9f9f9; color: #333; }
-    header { background: #222; color: #fff; padding: 2rem; text-align: center; }
-    nav a { color: #fff; margin: 0 1rem; text-decoration: none; }
-    section { padding: 3rem; max-width: 900px; margin: auto; }
-    h2 { color: #222; }
-    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-    .card { background: #fff; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-    footer { background: #222; color: #fff; text-align: center; padding: 1rem; }
-  </style>
 </head>
 <body>
   <header>
@@ -23,37 +13,173 @@
     <nav>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
   <section id="about">
     <h2>About Me</h2>
-    <p>Hello! I'm Vishnu, passionate about building modern web experiences and solving problems with code.</p>
+    <p>Hello! I'm Vishnu, a passionate developer and designer who loves building modern web experiences and solving real-world problems with code. I specialize in creating beautiful, responsive, and user-friendly applications.</p>
+    <p>With a focus on clean code and innovative design, I transform ideas into functional digital solutions. Whether it's front-end development, UI/UX design, or full-stack projects, I'm committed to delivering excellence.</p>
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
     <div class="projects">
       <div class="card">
-        <h3>Project One</h3>
-        <p>A short description of your project goes here.</p>
+        <div class="card-header">
+          <span class="project-icon">⏰</span>
+          <h3>Digital World Clock</h3>
+        </div>
+        <p>A real-time clock displaying current time across 9 different time zones with beautiful glassmorphism design and smooth animations.</p>
+        <div class="tech-stack">
+          <span class="tech">HTML</span>
+          <span class="tech">CSS</span>
+          <span class="tech">JavaScript</span>
+        </div>
+        <a href="clock.html" class="project-link">View Project →</a>
       </div>
+
       <div class="card">
-        <h3>Project Two</h3>
-        <p>Another project description here.</p>
+        <div class="card-header">
+          <span class="project-icon">🎨</span>
+          <h3>Portfolio Website</h3>
+        </div>
+        <p>A modern, fully responsive portfolio showcasing projects and skills with smooth animations, gradient backgrounds, and elegant UI design.</p>
+        <div class="tech-stack">
+          <span class="tech">HTML</span>
+          <span class="tech">CSS</span>
+          <span class="tech">Animations</span>
+        </div>
+        <a href="#" class="project-link">Current Page</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="project-icon">🌐</span>
+          <h3>Web Development</h3>
+        </div>
+        <p>Expertise in creating responsive web applications with modern technologies. Focus on performance, accessibility, and user experience.</p>
+        <div class="tech-stack">
+          <span class="tech">React</span>
+          <span class="tech">JavaScript</span>
+          <span class="tech">Responsive Design</span>
+        </div>
+        <a href="#contact" class="project-link">Get in Touch →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="project-icon">🎯</span>
+          <h3>UI/UX Design</h3>
+        </div>
+        <p>Creating intuitive and beautiful user interfaces with a focus on user experience. From wireframes to final designs.</p>
+        <div class="tech-stack">
+          <span class="tech">Figma</span>
+          <span class="tech">CSS</span>
+          <span class="tech">Design Systems</span>
+        </div>
+        <a href="#contact" class="project-link">Explore More →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="project-icon">💻</span>
+          <h3>Full Stack Development</h3>
+        </div>
+        <p>Building complete web applications from front-end to back-end. Database design, API development, and deployment expertise.</p>
+        <div class="tech-stack">
+          <span class="tech">Node.js</span>
+          <span class="tech">MongoDB</span>
+          <span class="tech">Express</span>
+        </div>
+        <a href="#contact" class="project-link">Learn More →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <span class="project-icon">🚀</span>
+          <h3>Performance Optimization</h3>
+        </div>
+        <p>Optimizing web applications for speed and efficiency. Implementing best practices for fast load times and smooth user interactions.</p>
+        <div class="tech-stack">
+          <span class="tech">Optimization</span>
+          <span class="tech">SEO</span>
+          <span class="tech">Analytics</span>
+        </div>
+        <a href="#contact" class="project-link">Let's Talk →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills & Expertise</h2>
+    <div class="skills-container">
+      <div class="skill-category">
+        <h3>Frontend</h3>
+        <ul>
+          <li>HTML5 & CSS3</li>
+          <li>JavaScript (ES6+)</li>
+          <li>React & Vue.js</li>
+          <li>Responsive Design</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Backend</h3>
+        <ul>
+          <li>Node.js & Express</li>
+          <li>MongoDB & SQL</li>
+          <li>REST APIs</li>
+          <li>Authentication</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Design & Tools</h3>
+        <ul>
+          <li>Figma & Adobe XD</li>
+          <li>Git & GitHub</li>
+          <li>UI/UX Design</li>
+          <li>Web Performance</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h3>Soft Skills</h3>
+        <ul>
+          <li>Problem Solving</li>
+          <li>Team Collaboration</li>
+          <li>Project Management</li>
+          <li>Communication</li>
+        </ul>
       </div>
     </div>
   </section>
 
   <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:vishnu@example.com">vishnu@example.com</a></p>
-    <p>LinkedIn: <a href="#">linkedin.com/in/vishnu</a></p>
+    <h2>Get in Touch</h2>
+    <p>I'm always interested in hearing about new projects and opportunities. Feel free to reach out!</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="contact-icon">📧</span>
+        <a href="mailto:vishnu@example.com">vishnu@example.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">💼</span>
+        <a href="https://linkedin.com/in/vishnu" target="_blank">LinkedIn Profile</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">🐙</span>
+        <a href="https://github.com/vishnu6301382491-dev" target="_blank">GitHub Profile</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">🐦</span>
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+      </div>
+    </div>
   </section>
 
   <footer>
-    <p>© 2026 Vishnu. All rights reserved.</p>
+    <p>© 2026 Vishnu. All rights reserved. | Built with ❤️ and modern web technologies</p>
   </footer>
 </body>
 </html>
