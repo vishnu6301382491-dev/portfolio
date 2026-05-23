@@ -51,24 +51,30 @@ function updateClocks() {
   });
 }
 
-// Update clocks immediately on page load
-updateClocks();
+// Wait for DOM to be fully loaded
+function initClock() {
+  console.log('🌍 Initializing Digital World Clock...');
+  
+  // Update clocks immediately on page load
+  updateClocks();
+  
+  // Update clocks every second
+  setInterval(updateClocks, 1000);
+  
+  console.log('✅ Digital World Clock is running! Times update every second.');
+}
 
-// Update clocks every second
-setInterval(updateClocks, 1000);
-
-// Optional: Add a smooth color transition based on time of day
+// Update theme based on time of day
 function updateThemeBasedOnTime() {
   const now = new Date();
   const hours = now.getHours();
-
   const body = document.body;
 
   if (hours >= 5 && hours < 12) {
-    // Morning: Blue to Orange gradient
+    // Morning: Blue to Purple gradient
     body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
   } else if (hours >= 12 && hours < 18) {
-    // Afternoon: Green to Blue gradient
+    // Afternoon: Pink to Red gradient
     body.style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
   } else {
     // Evening/Night: Deep Purple to Blue gradient
@@ -76,8 +82,16 @@ function updateThemeBasedOnTime() {
   }
 }
 
-// Update theme on page load and every hour
-updateThemeBasedOnTime();
-setInterval(updateThemeBasedOnTime, 3600000);
-
-console.log('🌍 Digital World Clock is running! Times update every second.');
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    initClock();
+    updateThemeBasedOnTime();
+    setInterval(updateThemeBasedOnTime, 3600000);
+  });
+} else {
+  // DOM is already loaded
+  initClock();
+  updateThemeBasedOnTime();
+  setInterval(updateThemeBasedOnTime, 3600000);
+}
