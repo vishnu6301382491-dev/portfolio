@@ -1,0 +1,245 @@
+/* Digital Clock Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1400px;
+}
+
+header {
+  text-align: center;
+  color: white;
+  margin-bottom: 50px;
+  animation: slideDown 0.8s ease;
+}
+
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: 2px;
+}
+
+header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.back-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: 2px solid white;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.back-link:hover {
+  background: white;
+  color: #667eea;
+}
+
+.clock-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.clock-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+.clock-card:nth-child(1) { animation-delay: 0.1s; }
+.clock-card:nth-child(2) { animation-delay: 0.2s; }
+.clock-card:nth-child(3) { animation-delay: 0.3s; }
+.clock-card:nth-child(4) { animation-delay: 0.4s; }
+.clock-card:nth-child(5) { animation-delay: 0.5s; }
+.clock-card:nth-child(6) { animation-delay: 0.6s; }
+.clock-card:nth-child(7) { animation-delay: 0.7s; }
+.clock-card:nth-child(8) { animation-delay: 0.8s; }
+.clock-card:nth-child(9) { animation-delay: 0.9s; }
+
+.clock-card:hover {
+  transform: translateY(-15px);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.timezone-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.flag {
+  font-size: 2rem;
+}
+
+.timezone-header h2 {
+  color: white;
+  font-size: 1.5rem;
+  flex: 1;
+  min-width: 120px;
+}
+
+.offset {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.time {
+  font-size: 3rem;
+  color: #fff;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 3px;
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.date {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+footer {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  animation: slideUp 0.8s ease;
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .clock-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .clock-card {
+    padding: 20px;
+  }
+
+  .time {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+
+  .timezone-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .flag {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  .clock-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .time {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+
+  .back-link {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}

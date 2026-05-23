@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital World Clock | Vishnu</title>
+  <link rel="stylesheet" href="clock-style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>⏰ Digital World Clock</h1>
+      <p>Current time across different time zones</p>
+      <a href="index.html" class="back-link">← Back to Portfolio</a>
+    </header>
+
+    <div class="clock-grid">
+      <!-- New York -->
+      <div class="clock-card">
+        <div class="timezone-header">
+          <span class="flag">🗽</span>
+          <h2>New York</h2>
+          <span class="offset">UTC-5</span>
+        </div>
+        <div class="time" id="time-ny">00:00:00</div>
+        <div class="date" id="date-ny">--</div>
+      </div>
+
+      <!-- London -->
+      <div class="clock-card">
+        <div class="timezone-header">
+          <span class="flag">🇬🇧</span>
+          <h2>London</h2>
+          <span class="offset">UTC+0</span>
+        </div>
+        <div class="time" id="time-london">00:00:00</div>
+        <div class="date" id="date-london">--</div>
+      </div>
+
+      <!-- Paris -->
+      <div class="clock-card">
+        <div class="timezone-header">
+          <span class="flag">🇫🇷</span>
+          <h2>Paris</h2>
+          <span class="offset">UTC+1</span>
+        </div>
+        <div class="time" id="time-paris">00:00:00</div>
+        <div class="date" id="date-paris">--</div>
+      </div>
+
+      <!-- Dubai -->
+      <div class="clock-card">
+        <div class="timezone-header">
+          <span class="flag">🇦🇪</span>
+          <h2>Dubai</h2>
+          <span class="offset">UTC+4</span>
+        </div>
+        <div class="time" id="time-dubai">00:00:00</div>
+        <div class="date" id="date-dubai">--</div>
+      </div>
+
+      <!-- India -->
+      <div class="clock-card">
+        <div class="timezone-header">
+          <span class="flag">🇮🇳</span>
+          <h2>India</h2>
+          <span class="offset">UTC+5:30</span>
+        </div>
+        <div class="time" id="time-india">00:00:00</div>
+        <div class="date" id="date-india">--</div>
+      </div>
+
+      <!-- Singapore -->
+      <div class="clock-card">
+        <div class="timezone-header">
+          <span class="flag">🇸🇬</span>
+          <h2>Singapore</h2>
+          <span class="offset">UTC+8</span>
+        </div>
+        <div class="time" id="time-singapore">00:00:00</div>
+        <div class="date" id="date-singapore">--</div>
+      </div>
+
+      <!-- Tokyo -->
+      <div class="clock-card">
+        <div class="timezone-header">
+          <span class="flag">🇯🇵</span>
+          <h2>Tokyo</h2>
+          <span class="offset">UTC+9</span>
+        </div>
+        <div class="time" id="time-tokyo">00:00:00</div>
+        <div class="date" id="date-tokyo">--</div>
+      </div>
+
+      <!-- Sydney -->
+      <div class="clock-card">
+        <div class="timezone-header">
+          <span class="flag">🇦🇺</span>
+          <h2>Sydney</h2>
+          <span class="offset">UTC+10</span>
+        </div>
+        <div class="time" id="time-sydney">00:00:00</div>
+        <div class="date" id="date-sydney">--</div>
+      </div>
+
+      <!-- Los Angeles -->
+      <div class="clock-card">
+        <div class="timezone-header">
+          <span class="flag">🎬</span>
+          <h2>Los Angeles</h2>
+          <span class="offset">UTC-8</span>
+        </div>
+        <div class="time" id="time-la">00:00:00</div>
+        <div class="date" id="date-la">--</div>
+      </div>
+    </div>
+
+    <footer>
+      <p>🌍 Times update in real-time | Built with ❤️ by Vishnu</p>
+    </footer>
+  </div>
+
+  <script src="clock-script.js"></script>
+</body>
+</html>
