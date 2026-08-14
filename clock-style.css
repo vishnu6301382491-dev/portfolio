@@ -1,4 +1,19 @@
-/* Digital Clock Styles */
+/* ==========================================================================
+   DIGITAL WORLD CLOCK STYLES (MATCHING PORTFOLIO GLASSMORPHISM DESIGN)
+   ========================================================================== */
+
+:root {
+  --bg-obsidian: #050716;
+  --bg-card: rgba(15, 23, 42, 0.7);
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(0, 242, 254, 0.3);
+  --neon-cyan: #00f2fe;
+  --neon-purple: #7928ca;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
 
 * {
   margin: 0;
@@ -7,99 +22,147 @@
 }
 
 body {
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: var(--font-sans);
+  background-color: var(--bg-obsidian);
+  color: var(--text-primary);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 40px 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Ambient glow orb */
+body::before {
+  content: '';
+  position: fixed;
+  top: -10%;
+  left: 20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(121, 40, 202, 0.25), transparent 70%);
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -10%;
+  right: 20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.2), transparent 70%);
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1280px;
 }
 
 header {
   text-align: center;
-  color: white;
   margin-bottom: 50px;
   animation: slideDown 0.8s ease;
 }
 
 header h1 {
-  font-size: 3rem;
+  font-size: 2.8rem;
+  font-weight: 800;
   margin-bottom: 10px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-  letter-spacing: 2px;
+  background: linear-gradient(135deg, #fff 40%, var(--neon-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
 }
 
 header p {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  font-weight: 300;
-  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
 }
 
 .back-link {
-  color: white;
+  color: var(--neon-cyan);
   text-decoration: none;
   font-weight: 600;
-  padding: 0.5rem 1rem;
-  border: 2px solid white;
-  border-radius: 25px;
+  font-family: var(--font-mono);
+  padding: 0.6rem 1.4rem;
+  border: 1px solid var(--neon-cyan);
+  border-radius: 9999px;
   transition: all 0.3s ease;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 242, 254, 0.08);
 }
 
 .back-link:hover {
-  background: white;
-  color: #667eea;
+  background: var(--neon-cyan);
+  color: #000;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+  transform: translateY(-2px);
 }
 
 .clock-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 25px;
   margin-bottom: 50px;
 }
 
 .clock-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
   border-radius: 20px;
   padding: 30px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   animation: fadeInUp 0.8s ease forwards;
   opacity: 0;
+  position: relative;
+  overflow: hidden;
 }
 
-.clock-card:nth-child(1) { animation-delay: 0.1s; }
-.clock-card:nth-child(2) { animation-delay: 0.2s; }
-.clock-card:nth-child(3) { animation-delay: 0.3s; }
-.clock-card:nth-child(4) { animation-delay: 0.4s; }
-.clock-card:nth-child(5) { animation-delay: 0.5s; }
-.clock-card:nth-child(6) { animation-delay: 0.6s; }
-.clock-card:nth-child(7) { animation-delay: 0.7s; }
-.clock-card:nth-child(8) { animation-delay: 0.8s; }
-.clock-card:nth-child(9) { animation-delay: 0.9s; }
+.clock-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+  opacity: 0.4;
+}
 
 .clock-card:hover {
-  transform: translateY(-15px);
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-8px);
+  border-color: var(--border-glow);
+  box-shadow: 0 20px 45px rgba(0, 242, 254, 0.15);
 }
+
+.clock-card:nth-child(1) { animation-delay: 0.05s; }
+.clock-card:nth-child(2) { animation-delay: 0.1s; }
+.clock-card:nth-child(3) { animation-delay: 0.15s; }
+.clock-card:nth-child(4) { animation-delay: 0.2s; }
+.clock-card:nth-child(5) { animation-delay: 0.25s; }
+.clock-card:nth-child(6) { animation-delay: 0.3s; }
+.clock-card:nth-child(7) { animation-delay: 0.35s; }
+.clock-card:nth-child(8) { animation-delay: 0.4s; }
+.clock-card:nth-child(9) { animation-delay: 0.45s; }
 
 .timezone-header {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 20px;
-  flex-wrap: wrap;
 }
 
 .flag {
@@ -107,139 +170,62 @@ header p {
 }
 
 .timezone-header h2 {
-  color: white;
-  font-size: 1.5rem;
+  color: #fff;
+  font-size: 1.35rem;
+  font-weight: 700;
   flex: 1;
-  min-width: 120px;
 }
 
 .offset {
-  background: rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 0.85rem;
+  background: rgba(0, 242, 254, 0.12);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  color: var(--neon-cyan);
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
   font-weight: 600;
-  white-space: nowrap;
 }
 
 .time {
-  font-size: 3rem;
+  font-size: 2.8rem;
   color: #fff;
   font-weight: 700;
-  font-family: 'Courier New', monospace;
-  letter-spacing: 3px;
+  font-family: var(--font-mono);
+  letter-spacing: 2px;
   text-align: center;
   margin-bottom: 10px;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  animation: pulse 2s ease-in-out infinite;
+  text-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
 }
 
 .date {
   text-align: center;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
   font-weight: 500;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 footer {
   text-align: center;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
   padding-top: 30px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  animation: slideUp 0.8s ease;
+  border-top: 1px solid var(--border-glass);
 }
 
-/* Animations */
 @keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.9;
-  }
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
-  header h1 {
-    font-size: 2rem;
-  }
-
-  .clock-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-  }
-
-  .clock-card {
-    padding: 20px;
-  }
-
-  .time {
-    font-size: 2rem;
-    letter-spacing: 2px;
-  }
-
-  .timezone-header h2 {
-    font-size: 1.2rem;
-  }
-
-  .flag {
-    font-size: 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 1.5rem;
-  }
-
-  .clock-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .time {
-    font-size: 1.8rem;
-    letter-spacing: 1px;
-  }
-
-  .back-link {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
-  }
+  header h1 { font-size: 2rem; }
+  .time { font-size: 2.2rem; }
+  .clock-grid { grid-template-columns: 1fr; }
 }

@@ -3,184 +3,667 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vishnu Vardhan Reddy | Full Stack Java Developer</title>
+    <title>Vishnu.dev | Full Stack Developer & AI Enthusiast</title>
+    <meta name="description" content="Official portfolio of Chinnapareddy Vishnu Vardhan Reddy - Full Stack Java Developer & Data Science Specialist featuring 14+ verified GitHub projects, AI applications, and live web apps.">
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="bg-animation"></div>
+    <!-- Dynamic Particle Background -->
+    <canvas id="particle-canvas"></canvas>
 
+    <!-- Ambient Glowing Orbs -->
+    <div class="bg-glow-orb bg-glow-1"></div>
+    <div class="bg-glow-orb bg-glow-2"></div>
+
+    <!-- Navigation Header -->
     <header>
         <nav class="navbar">
-            <div class="logo">Vishnu<span style="color: var(--neon-blue);">.</span></div>
-            <ul>
+            <a href="#" class="logo-group">
+                <span class="logo-text">Vishnu<span class="logo-accent">.dev</span></span>
+                <span class="status-badge">
+                    <span class="status-dot"></span> Open for Roles
+                </span>
+            </a>
+
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#education">Education</a></li>
+                <li><a href="#achievements">Achievements</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+
+            <div class="nav-actions">
+                <button class="terminal-toggle-btn" id="terminal-toggle-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                    CLI Terminal
+                </button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Navigation">☰</button>
+            </div>
         </nav>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-image">
-            <img src="profile.jpg" alt="Vishnu Vardhan Reddy">
-        </div>
-        <div class="hero-content">
-            <h1>Chinnapareddy Vishnu Vardhan Reddy</h1>
-            <h2>Full Stack Java Developer</h2>
-            <p>
-                Computer Science & Data Science Undergraduate passionate about
-                building scalable web applications, solving real-world problems,
-                and creating impactful digital experiences.
+        <div class="hero-left">
+            <div class="hero-greeting">// Hello World, I am</div>
+            <h1 class="hero-title">Chinnapareddy Vishnu Vardhan Reddy</h1>
+            
+            <div class="hero-subtitle-wrapper">
+                <span class="typing-prefix">Specialized in</span>
+                <span id="typing-text" class="typing-text"></span>
+            </div>
+
+            <p class="hero-desc">
+                Computer Science & Data Science Undergraduate at <strong>Rise Krishna Sai Prakasam Group of Institutions</strong>. 
+                Passionate about engineering scalable web applications, designing REST microservices, and extracting actionable insights through data analytics and machine learning.
             </p>
-            <div class="buttons">
-                <a href="resume.pdf" target="_blank" class="btn">View Resume</a>
-                <a href="resume.pdf" download class="btn secondary">Download Resume</a>
+
+            <div class="tech-pills">
+                <span class="pill">Next.js</span>
+                <span class="pill">React</span>
+                <span class="pill">TypeScript</span>
+                <span class="pill">Java</span>
+                <span class="pill">Python</span>
+                <span class="pill">TensorFlow</span>
+                <span class="pill">Node.js</span>
+                <span class="pill">MongoDB</span>
+                <span class="pill">MySQL</span>
+            </div>
+
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">
+                    Explore 14+ Projects
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <button class="btn btn-secondary" onclick="document.getElementById('terminal-container').scrollIntoView({behavior: 'smooth'})">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                    CLI Terminal
+                </button>
+                <a href="resume.pdf" target="_blank" class="btn btn-outline">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    Resume PDF
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <h3>14+</h3>
+                    <p>GitHub Repositories</p>
+                </div>
+                <div class="stat-item">
+                    <h3>11+</h3>
+                    <p>Verified Live Demos</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2026</h3>
+                    <p>B.Tech CSE (DS)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div class="avatar-card">
+                <div class="avatar-img-wrapper">
+                    <img src="profile.jpeg" alt="Chinnapareddy Vishnu Vardhan Reddy">
+                </div>
+                <div class="avatar-overlay-badge">
+                    <div>
+                        <div class="badge-text">Vishnu Vardhan Reddy</div>
+                        <div class="badge-sub">Full Stack & AI Engineer</div>
+                    </div>
+                    <span class="status-dot"></span>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Interactive CLI Terminal Widget -->
+    <div class="terminal-section" id="terminal-container">
+        <div class="terminal-box">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                </div>
+                <span class="terminal-title">vishnu@portfolio:~ (bash)</span>
+                <span style="font-size: 0.72rem; color: var(--text-muted);">Type 'help'</span>
+            </div>
+            <div class="terminal-body" id="terminal-body">
+                <div class="terminal-output" id="terminal-output">
+                    <div class="terminal-line">Welcome to <b>Vishnu's Interactive Developer Terminal v3.0</b></div>
+                    <div class="terminal-line">Type <span class="terminal-command">help</span> to list commands or try <span class="terminal-command">projects</span>, <span class="terminal-command">skills</span>, <span class="terminal-command">github</span>, <span class="terminal-command">about</span>.</div>
+                </div>
+                <div class="terminal-prompt-line">
+                    <span class="terminal-prompt">vishnu@portfolio:~$</span>
+                    <input type="text" class="terminal-input" id="terminal-input" placeholder="type a command..." autocomplete="off" spellcheck="false">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Me Section -->
     <section id="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="card">
-            <p style="margin-bottom: 1rem;">
-                Motivated Computer Science and Data Science undergraduate with
-                hands-on experience in Full Stack Web Development using Java,
-                Python, HTML, CSS, and JavaScript.
-            </p>
-            <p>
-                Experienced in designing user-centric applications in healthcare
-                and analytics domains with strong analytical, problem-solving,
-                and teamwork skills.
-            </p>
+        <div class="section-header">
+            <span class="section-tag">01. Overview</span>
+            <h2 class="section-title">Architecting Digital Solutions</h2>
+            <p class="section-desc">Motivated Computer Science & Data Science undergraduate with hands-on experience in full-stack engineering, databases, and intelligent data workflows.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="glass-card about-card">
+                <div class="about-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                </div>
+                <h3>Full Stack Web Engineering</h3>
+                <p>Building high-performance web applications using Next.js, React, Java micro-backends, Python Flask, HTML5, CSS3, and JavaScript with robust REST API communication and role-based security.</p>
+            </div>
+
+            <div class="glass-card about-card">
+                <div class="about-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                </div>
+                <h3>Data Science & ML Analytics</h3>
+                <p>Applying machine learning algorithms to model predictive patterns, real-time atmospheric forecasting, computer vision fruit quality sorting, and analytical data visualization dashboards.</p>
+            </div>
+
+            <div class="glass-card about-card">
+                <div class="about-card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+                </div>
+                <h3>Database & Microservices Architecture</h3>
+                <p>Designing hybrid database schemas across relational MySQL and NoSQL MongoDB to deliver low-latency queries, robust RBAC permissions, and dependable data persistence.</p>
+            </div>
         </div>
     </section>
 
+    <!-- Technical Skills Matrix -->
     <section id="skills">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="grid">
-            <div class="card">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                <h3>Programming</h3>
-                <p>Java, Python, JavaScript</p>
+        <div class="section-header">
+            <span class="section-tag">02. Competencies</span>
+            <h2 class="section-title">Technical Skills Matrix</h2>
+            <p class="section-desc">Comprehensive breakdown of core languages, frontend/backend frameworks, database systems, and development tools.</p>
+        </div>
+
+        <div class="filter-bar">
+            <button class="filter-btn skills-filter-btn active" data-filter="all">All Tech</button>
+            <button class="filter-btn skills-filter-btn" data-filter="languages">Languages</button>
+            <button class="filter-btn skills-filter-btn" data-filter="web">Web & Backend</button>
+            <button class="filter-btn skills-filter-btn" data-filter="db">Databases</button>
+            <button class="filter-btn skills-filter-btn" data-filter="concepts">Concepts & Tools</button>
+        </div>
+
+        <div class="skills-grid">
+            <!-- Java -->
+            <div class="glass-card skill-card" data-category="languages">
+                <div>
+                    <div class="skill-header">
+                        <div class="skill-title">
+                            <span class="skill-icon">☕</span> Java
+                        </div>
+                        <span class="skill-level-tag">Advanced / 90%</span>
+                    </div>
+                    <div class="skill-meter-bg">
+                        <div class="skill-meter-fill" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">OOP</span>
+                    <span class="skill-tag">Collections</span>
+                    <span class="skill-tag">Backend Services</span>
+                </div>
             </div>
 
-            <div class="card">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                <h3>Frontend</h3>
-                <p>HTML5, CSS3, Responsive Design</p>
+            <!-- Python -->
+            <div class="glass-card skill-card" data-category="languages">
+                <div>
+                    <div class="skill-header">
+                        <div class="skill-title">
+                            <span class="skill-icon">🐍</span> Python
+                        </div>
+                        <span class="skill-level-tag">Proficient / 88%</span>
+                    </div>
+                    <div class="skill-meter-bg">
+                        <div class="skill-meter-fill" data-width="88"></div>
+                    </div>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">Flask</span>
+                    <span class="skill-tag">Data Science</span>
+                </div>
             </div>
 
-            <div class="card">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-                <h3>Backend</h3>
-                <p>Java, Flask, REST APIs</p>
+            <!-- JavaScript & TypeScript -->
+            <div class="glass-card skill-card" data-category="languages">
+                <div>
+                    <div class="skill-header">
+                        <div class="skill-title">
+                            <span class="skill-icon">⚡</span> JS & TypeScript
+                        </div>
+                        <span class="skill-level-tag">Proficient / 85%</span>
+                    </div>
+                    <div class="skill-meter-bg">
+                        <div class="skill-meter-fill" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">ES6+</span>
+                    <span class="skill-tag">Next.js</span>
+                    <span class="skill-tag">React</span>
+                </div>
             </div>
 
-            <div class="card">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
-                <h3>Database</h3>
-                <p>MySQL, MongoDB</p>
+            <!-- HTML5 / CSS3 -->
+            <div class="glass-card skill-card" data-category="web">
+                <div>
+                    <div class="skill-header">
+                        <div class="skill-title">
+                            <span class="skill-icon">🎨</span> HTML5 & Modern CSS3
+                        </div>
+                        <span class="skill-level-tag">Mastery / 95%</span>
+                    </div>
+                    <div class="skill-meter-bg">
+                        <div class="skill-meter-fill" data-width="95"></div>
+                    </div>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Tailwind CSS</span>
+                    <span class="skill-tag">Glassmorphism</span>
+                    <span class="skill-tag">Flexbox/Grid</span>
+                </div>
             </div>
 
-            <div class="card">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
-                <h3>Tools</h3>
-                <p>GitHub, MS Excel, Windows</p>
+            <!-- MySQL -->
+            <div class="glass-card skill-card" data-category="db">
+                <div>
+                    <div class="skill-header">
+                        <div class="skill-title">
+                            <span class="skill-icon">🐬</span> MySQL
+                        </div>
+                        <span class="skill-level-tag">Advanced / 85%</span>
+                    </div>
+                    <div class="skill-meter-bg">
+                        <div class="skill-meter-fill" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Relational Schemas</span>
+                    <span class="skill-tag">Complex Queries</span>
+                    <span class="skill-tag">Joins</span>
+                </div>
             </div>
 
-            <div class="card">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d2ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                <h3>Concepts</h3>
-                <p>Full Stack Dev, ML, Data Analytics, RBAC</p>
+            <!-- MongoDB -->
+            <div class="glass-card skill-card" data-category="db">
+                <div>
+                    <div class="skill-header">
+                        <div class="skill-title">
+                            <span class="skill-icon">🍃</span> MongoDB
+                        </div>
+                        <span class="skill-level-tag">Proficient / 82%</span>
+                    </div>
+                    <div class="skill-meter-bg">
+                        <div class="skill-meter-fill" data-width="82"></div>
+                    </div>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Mongoose</span>
+                    <span class="skill-tag">NoSQL</span>
+                    <span class="skill-tag">JSON Aggregation</span>
+                </div>
+            </div>
+
+            <!-- Next.js & React -->
+            <div class="glass-card skill-card" data-category="web">
+                <div>
+                    <div class="skill-header">
+                        <div class="skill-title">
+                            <span class="skill-icon">⚛️</span> Next.js & React
+                        </div>
+                        <span class="skill-level-tag">Advanced / 88%</span>
+                    </div>
+                    <div class="skill-meter-bg">
+                        <div class="skill-meter-fill" data-width="88"></div>
+                    </div>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">API Routes</span>
+                    <span class="skill-tag">Vite</span>
+                    <span class="skill-tag">State Management</span>
+                </div>
+            </div>
+
+            <!-- Tools & Concepts -->
+            <div class="glass-card skill-card" data-category="concepts">
+                <div>
+                    <div class="skill-header">
+                        <div class="skill-title">
+                            <span class="skill-icon">🛠️</span> Git, RBAC & AI
+                        </div>
+                        <span class="skill-level-tag">Proficient / 88%</span>
+                    </div>
+                    <div class="skill-meter-bg">
+                        <div class="skill-meter-fill" data-width="88"></div>
+                    </div>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">GitHub</span>
+                    <span class="skill-tag">RBAC Security</span>
+                    <span class="skill-tag">Transfer Learning</span>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Projects Showcase Section -->
     <section id="projects">
-        <h2 class="section-title">Projects</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Health App Development</h3>
-                <ul>
-                    <li>Healthcare management platform</li>
-                    <li>Role-Based Access Control (RBAC)</li>
-                    <li>Patient & appointment management</li>
-                    <li>Java / Python micro-backend setup</li>
-                    <li>MySQL & MongoDB integration</li>
-                </ul>
+        <div class="section-header">
+            <span class="section-tag">03. Things I've Built</span>
+            <h2 class="section-title">GitHub Project Showcase</h2>
+            <p class="section-desc">Explore a collection of full-stack applications, AI-powered solutions, data-driven projects, and real-world web platforms designed and developed by Vishnu.</p>
+        </div>
+
+        <!-- Project Statistics Strip -->
+        <div class="project-stats-strip" id="project-stats-strip">
+            <div class="stat-box">
+                <div class="stat-box-num">14+</div>
+                <div class="stat-box-label">Repositories</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-box-num">12+</div>
+                <div class="stat-box-label">Technologies</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-box-num">6+</div>
+                <div class="stat-box-label">Specialized Domains</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-box-num">11+</div>
+                <div class="stat-box-label">Verified Live Demos</div>
+            </div>
+        </div>
+
+        <!-- Search & Sort Controls Bar -->
+        <div class="search-sort-bar">
+            <div class="search-input-wrapper">
+                <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="project-search-input" class="search-input" placeholder="Search projects by name, technology (React, Python, MongoDB), or keyword..." autocomplete="off">
             </div>
 
-            <div class="card">
-                <h3>AQI Forecasting Dashboard</h3>
-                <ul>
-                    <li>Real-time AQI atmospheric monitoring</li>
-                    <li>Machine Learning historical forecasting</li>
-                    <li>Third-party API data pipelines</li>
-                    <li>Interactive data visualizations</li>
-                    <li>Location-based dynamic insights</li>
-                </ul>
+            <select id="project-sort-select" class="sort-select">
+                <option value="featured">Sort by: Featured First</option>
+                <option value="newest">Sort by: Newest First</option>
+                <option value="technical">Sort by: Most Technical</option>
+                <option value="aiml">Sort by: AI / ML Focus</option>
+                <option value="fullstack">Sort by: Full Stack Focus</option>
+            </select>
+        </div>
+
+        <!-- Domain Filter Pills -->
+        <div class="filter-bar">
+            <button class="filter-btn project-filter-btn active" data-filter="all">All (14)</button>
+            <button class="filter-btn project-filter-btn" data-filter="featured">★ Featured</button>
+            <button class="filter-btn project-filter-btn" data-filter="fullstack">Full Stack</button>
+            <button class="filter-btn project-filter-btn" data-filter="aiml">AI / ML</button>
+            <button class="filter-btn project-filter-btn" data-filter="agritech">AgriTech</button>
+            <button class="filter-btn project-filter-btn" data-filter="healthcare">Healthcare</button>
+            <button class="filter-btn project-filter-btn" data-filter="edtech">EdTech</button>
+            <button class="filter-btn project-filter-btn" data-filter="travel">Travel</button>
+            <button class="filter-btn project-filter-btn" data-filter="datascience">Data Science</button>
+            <button class="filter-btn project-filter-btn" data-filter="vision">Computer Vision</button>
+            <button class="filter-btn project-filter-btn" data-filter="webdev">Web Dev</button>
+        </div>
+
+        <!-- Featured Projects Grid -->
+        <h3 id="featured-section-title" style="color: #fff; font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; display: block;">★ Featured Projects</h3>
+        <div class="projects-grid" id="featured-projects-grid"></div>
+
+        <!-- All Projects Grid -->
+        <h3 style="color: #fff; font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">All Repositories & Applications</h3>
+        <div class="projects-grid" id="all-projects-grid"></div>
+
+        <!-- GitHub Integration Section -->
+        <div class="github-integration-box" id="github-integration">
+            <h3>Explore My Complete GitHub Profile</h3>
+            <p>Explore my complete collection of projects, experiments, AI applications, and full-stack repositories on GitHub.</p>
+            <div class="github-cta-btns">
+                <a href="https://github.com/vishnu6301382491-dev" target="_blank" class="btn btn-primary">
+                    Visit GitHub Profile ↗
+                </a>
+                <a href="https://github.com/vishnu6301382491-dev?tab=repositories" target="_blank" class="btn btn-secondary">
+                    View All 14 Repositories ↗
+                </a>
             </div>
         </div>
     </section>
 
+    <!-- Project Details Modal Backdrop -->
+    <div class="modal-backdrop" id="project-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">&times;</button>
+            <img src="" alt="" class="modal-img" id="modal-img">
+            <h3 class="modal-title" id="modal-title">Project Title</h3>
+            <p class="modal-body-text" id="modal-desc">Description</p>
+            
+            <h4 style="color: #fff; margin-bottom: 0.75rem;">Key Architecture Features:</h4>
+            <ul class="modal-features-list" id="modal-features"></ul>
+
+            <h4 style="color: #fff; margin-bottom: 0.75rem;">Technologies Used:</h4>
+            <div class="tech-pills" id="modal-tags" style="margin-bottom: 2rem;"></div>
+
+            <div id="modal-actions" style="display: flex; gap: 1rem; flex-wrap: wrap;"></div>
+        </div>
+    </div>
+
+    <!-- Education Timeline -->
     <section id="education">
-        <h2 class="section-title">Education</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>B.Tech CSE (Data Science)</h3>
-                <p style="color: #fff; margin-bottom: 0.5rem;">Rise Krishna Sai Prakasam Group of Institutions</p>
-                <p style="font-size: 0.9rem; color: var(--neon-blue);">2022 - 2026</p>
+        <div class="section-header">
+            <span class="section-tag">04. Education</span>
+            <h2 class="section-title">Academic Foundation</h2>
+            <p class="section-desc">My formal education in Computer Science, Data Science, and Mathematics.</p>
+        </div>
+
+        <div class="timeline">
+            <!-- B.Tech -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card timeline-card">
+                    <h3>B.Tech in Computer Science & Data Science</h3>
+                    <div class="timeline-institution">Rise Krishna Sai Prakasam Group of Institutions</div>
+                    <div class="timeline-period">2022 - 2026 | Ongole, Andhra Pradesh</div>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Focusing on Core Software Engineering, Data Structures & Algorithms, Full Stack Web Development, Database Management Systems, Machine Learning, and Data Analytics.</p>
+                </div>
             </div>
 
-            <div class="card">
-                <h3>Intermediate MPC</h3>
-                <p style="color: #fff; margin-bottom: 0.5rem;">Sri Gowthami Junior College</p>
-                <p style="font-size: 0.9rem; color: var(--neon-blue);">2020 - 2022</p>
+            <!-- Intermediate -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card timeline-card">
+                    <h3>Intermediate (MPC - Mathematics, Physics, Chemistry)</h3>
+                    <div class="timeline-institution">Sri Gowthami Junior College</div>
+                    <div class="timeline-period">2020 - 2022 | Andhra Pradesh</div>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Graduated with top academic standing, laying strong mathematical and analytical foundations for computer science specialization.</p>
+                </div>
             </div>
 
-            <div class="card">
-                <h3>SSC</h3>
-                <p style="color: #fff; margin-bottom: 0.5rem;">ZP High School</p>
-                <p style="font-size: 0.9rem; color: var(--neon-blue);">2019 - 2020</p>
+            <!-- SSC -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="glass-card timeline-card">
+                    <h3>Secondary School Certificate (SSC)</h3>
+                    <div class="timeline-institution">ZP High School</div>
+                    <div class="timeline-period">2019 - 2020 | Andhra Pradesh</div>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem;">Completed secondary schooling with distinction and high academic honors.</p>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- Achievements Section -->
     <section id="achievements">
-        <h2 class="section-title">Achievements</h2>
-        <div class="card">
-            <ul>
-                <li>Developed and deployed multiple production-ready Full Stack Web Applications.</li>
-                <li>Completed rigorous industry internships in Web Development and Advanced Data Analysis.</li>
-                <li>Maintained exceptional academic performance specializing in Computer Science fields.</li>
-                <li>Recognized consistently for analytical thinking and high-pressure problem-solving.</li>
-                <li>Collaborated seamlessly within cross-functional teams on technology-driven infrastructure.</li>
-            </ul>
+        <div class="section-header">
+            <span class="section-tag">05. Milestones</span>
+            <h2 class="section-title">Key Achievements</h2>
+            <p class="section-desc">Recognitions, deployments, and professional milestones.</p>
+        </div>
+
+        <div class="achievements-grid">
+            <div class="glass-card achievement-card">
+                <div class="achievement-badge">🚀</div>
+                <div>
+                    <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 6px;">11+ Verified Deployments</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Successfully designed, developed, and deployed full-stack web applications and AI tools with verified GitHub Pages live links.</p>
+                </div>
+            </div>
+
+            <div class="glass-card achievement-card">
+                <div class="achievement-badge">💼</div>
+                <div>
+                    <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 6px;">Industry Internships</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Completed rigorous hands-on internships specializing in Web Development, REST APIs, and Advanced Data Analysis.</p>
+                </div>
+            </div>
+
+            <div class="glass-card achievement-card">
+                <div class="achievement-badge">🎓</div>
+                <div>
+                    <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 6px;">Academic Excellence</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Consistently maintained top percentile academic performance in Computer Science & Data Science domain coursework.</p>
+                </div>
+            </div>
+
+            <div class="glass-card achievement-card">
+                <div class="achievement-badge">🤝</div>
+                <div>
+                    <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 6px;">Technical Leadership</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Collaborated effectively within tech teams, applying agile problem solving to deliver reliable software solutions.</p>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-card">
-            <p><strong>Email:</strong> <a href="mailto:vishnuvardhanreddych45@gmail.com">vishnuvardhanreddych45@gmail.com</a></p>
-            <p><strong>Phone:</strong> <a href="tel:+916301382491">+91 6301382491</a></p>
-            <p><strong>Location:</strong> Ongole, Andhra Pradesh, India</p>
-            <p><strong>GitHub:</strong> <a href="https://github.com/vishnu6301382491-dev" target="_blank">github.com/vishnu6301382491-dev</a></p>
-            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/vishnu-vardhan-reddy-chinnapareddy" target="_blank">View Professional Profile</a></p>
+        <div class="section-header">
+            <span class="section-tag">06. Connect</span>
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-desc">Open for full-time Full Stack Java Developer roles, software engineering internships, and collaborative tech projects.</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info-cards">
+                <div class="glass-card contact-item copy-trigger" data-copy="vishnuvardhanreddych45@gmail.com">
+                    <div class="contact-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </div>
+                    <div class="contact-detail">
+                        <h4>Email (Click to Copy)</h4>
+                        <p>vishnuvardhanreddych45@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="glass-card contact-item copy-trigger" data-copy="+916301382491">
+                    <div class="contact-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    </div>
+                    <div class="contact-detail">
+                        <h4>Phone (Click to Copy)</h4>
+                        <p>+91 6301382491</p>
+                    </div>
+                </div>
+
+                <div class="glass-card contact-item">
+                    <div class="contact-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div class="contact-detail">
+                        <h4>Location</h4>
+                        <p>Ongole, Andhra Pradesh, India</p>
+                    </div>
+                </div>
+
+                <div class="glass-card contact-item" onclick="window.open('https://github.com/vishnu6301382491-dev', '_blank')">
+                    <div class="contact-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </div>
+                    <div class="contact-detail">
+                        <h4>GitHub Profile</h4>
+                        <a href="https://github.com/vishnu6301382491-dev" target="_blank">github.com/vishnu6301382491-dev</a>
+                    </div>
+                </div>
+
+                <div class="glass-card contact-item" onclick="window.open('https://www.linkedin.com/in/vishnu-vardhan-reddy-chinnapareddy', '_blank')">
+                    <div class="contact-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </div>
+                    <div class="contact-detail">
+                        <h4>LinkedIn Profile</h4>
+                        <a href="https://www.linkedin.com/in/vishnu-vardhan-reddy-chinnapareddy" target="_blank">linkedin.com/in/vishnu-vardhan-reddy-chinnapareddy</a>
+                    </div>
+                </div>
+            </div>
+
+            <form class="glass-card contact-form" id="contact-form">
+                <h3 style="font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem;">Send a Message</h3>
+                
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" class="form-input" placeholder="e.g. Alexander Pierce" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email Address</label>
+                    <input type="email" id="email" class="form-input" placeholder="e.g. alex@company.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" class="form-input" placeholder="Role Inquiry / Project Collaboration" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" class="form-input" placeholder="Write your message here..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    Send Message
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                </button>
+            </form>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Chinnapareddy Vishnu Vardhan Reddy | Built with Dashboard Architecture</p>
+        <div class="footer-content">
+            <div class="logo-text">Vishnu<span class="logo-accent">.dev</span></div>
+            <p class="footer-text">&copy; 2026 Chinnapareddy Vishnu Vardhan Reddy | Built with Dark Glassmorphism Architecture</p>
+            <div style="font-size: 0.8rem; color: var(--neon-cyan); font-family: var(--font-mono);">
+                Computer Science & Data Science Undergrad @ Rise Krishna Sai Prakasam Group of Institutions
+            </div>
+        </div>
     </footer>
 
+    <!-- Toast Notification Popup -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Fluid Custom Magnetic Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Custom JavaScript Core Engine -->
+    <script src="creations.js"></script>
 </body>
 </html>
