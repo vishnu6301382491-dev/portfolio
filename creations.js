@@ -720,6 +720,7 @@ function initTerminal() {
     &nbsp;&nbsp;<span class="terminal-command">projects</span> - Display featured projects<br>
     &nbsp;&nbsp;<span class="terminal-command">education</span> - View degree & college<br>
     &nbsp;&nbsp;<span class="terminal-command">contact</span> - Show email, phone & social links<br>
+    &nbsp;&nbsp;<span class="terminal-command">instagram</span> - Open Instagram Profile<br>
     &nbsp;&nbsp;<span class="terminal-command">github</span> - Open GitHub Profile<br>
     &nbsp;&nbsp;<span class="terminal-command">resume</span> - Open PDF resume<br>
     &nbsp;&nbsp;<span class="terminal-command">date</span> - Print current time<br>
@@ -748,8 +749,11 @@ function initTerminal() {
     - Email: vishnuvardhanreddych45@gmail.com<br>
     - Phone: +91 6301382491<br>
     - Location: Ongole, Andhra Pradesh, India<br>
+    - LinkedIn: linkedin.com/in/vishnu-vardhan-reddy-chinnapareddy<br>
+    - Instagram: instagram.com/vishnu_reddy_4503<br>
     - GitHub: github.com/vishnu6301382491-dev`,
 
+    instagram: `Opening https://www.instagram.com/vishnu_reddy_4503?igsh=Z3U5bXl3MzhzZ2xt...`,
     github: `Opening https://github.com/vishnu6301382491-dev...`,
     resume: `Opening resume.pdf...`,
     date: () => new Date().toString()
@@ -774,6 +778,10 @@ function initTerminal() {
 
       if (cmd === 'resume') {
         window.open('resume.pdf', '_blank');
+      }
+
+      if (cmd === 'instagram') {
+        window.open('https://www.instagram.com/vishnu_reddy_4503?igsh=Z3U5bXl3MzhzZ2xt', '_blank');
       }
 
       if (cmd === 'github') {
