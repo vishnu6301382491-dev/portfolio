@@ -71,14 +71,14 @@ function updateThemeBasedOnTime() {
   const body = document.body;
 
   if (hours >= 5 && hours < 12) {
-    // Morning: Blue to Purple gradient
-    body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+    // Morning: Subtle Deep Indigo to Charcoal
+    body.style.background = 'linear-gradient(135deg, #090e1a 0%, #111827 100%)';
   } else if (hours >= 12 && hours < 18) {
-    // Afternoon: Pink to Red gradient
-    body.style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
+    // Afternoon: Subtle Deep Blue-Gray
+    body.style.background = 'linear-gradient(135deg, #0b1120 0%, #131c2e 100%)';
   } else {
-    // Evening/Night: Deep Purple to Blue gradient
-    body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+    // Evening/Night: Deep Obsidian
+    body.style.background = 'linear-gradient(135deg, #06080d 0%, #0d121f 100%)';
   }
 }
 
