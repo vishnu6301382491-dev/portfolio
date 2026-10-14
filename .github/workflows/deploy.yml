@@ -26,6 +26,18 @@ jobs:
       - run: npm run build
         env:
           NEXT_PUBLIC_FORM_URL: ${{ vars.NEXT_PUBLIC_FORM_URL }}
+      - name: Create portfolio subfolder for GitHub Pages
+        run: |
+          mkdir -p out/portfolio
+          cp -r out/_next out/portfolio/_next 2>/dev/null || true
+          cp -r out/*.html out/portfolio/ 2>/dev/null || true
+          cp -r out/*.txt out/portfolio/ 2>/dev/null || true
+          cp -r out/*.png out/portfolio/ 2>/dev/null || true
+          cp -r out/*.jpg out/portfolio/ 2>/dev/null || true
+          cp -r out/*.jpeg out/portfolio/ 2>/dev/null || true
+          cp -r out/*.pdf out/portfolio/ 2>/dev/null || true
+          cp -r out/frames out/portfolio/frames 2>/dev/null || true
+          cp -r out/404 out/portfolio/404 2>/dev/null || true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
