@@ -13,6 +13,9 @@ const answers: Record<string, string[]> = {
     'education   degrees & academic record',
     'skills      technical skills matrix',
     'projects    featured repositories & apps',
+    'foodwala    flagship Java Servlets & JSP project details',
+    'aqi         AQI prediction GA-KELM project details',
+    'repos       19 public GitHub repositories overview',
     'contact     contact info & social links',
     'resume      open my resume.pdf',
     'clear       clear the terminal screen',
@@ -50,6 +53,32 @@ const answers: Record<string, string[]> = {
     'github    https://github.com/vishnu6301382491-dev (19 repos)',
     'linkedin  https://linkedin.com/in/vishnu-vardhan-reddy-chinnapareddy',
     'portfolio https://vishnu6301382491-dev.github.io/portfolio',
+  ],
+  foodwala: [
+    'PROJECT:  FoodWala — Food Ordering Website',
+    'STACK:    Java, Java Servlets, JSP, MySQL, HTML5, CSS3, JavaScript, Razorpay API',
+    'DETAILS:  Built for Bengaluru with 100+ restaurants & 750+ dishes.',
+    'SECURITY: Multi-role RBAC (Customer, Manager, Delivery Partner, Admin).',
+    'LIVE:     https://vishnu6301382491-dev.github.io/Foodwala',
+    'CODE:     https://github.com/vishnu6301382491-dev/Foodwala',
+  ],
+  aqi: [
+    'PROJECT:  AQI Prediction Dashboard (GA-KELM)',
+    'STACK:    Python, Genetic Algorithm, Kernel Extreme Learning Machine, JS, Chart.js',
+    'DETAILS:  Location-based air quality forecasting & interactive dark visualizations.',
+    'LIVE:     https://vishnu6301382491-dev.github.io/Air-Quality-Indexing-Forecasting-Via-Genetic-Algorithm',
+    'CODE:     https://github.com/vishnu6301382491-dev/Air-Quality-Indexing-Forecasting-Via-Genetic-Algorithm',
+  ],
+  tap: [
+    'INTERNSHIP: Java Full Stack Intern at TAP Academy (May 2026 – Present)',
+    'CURRICULUM: Enterprise Java, Servlets, JSP, MySQL, Web Dev, Git/GitHub.',
+    'PROJECT:    Shipped FoodWala full-stack application.',
+  ],
+  repos: [
+    'Total Verified Public Repositories: 19',
+    'Live Deployments: 17+',
+    'Primary Tech: Java, Python, Next.js, MySQL, Machine Learning',
+    'Profile: https://github.com/vishnu6301382491-dev?tab=repositories',
   ],
 }
 

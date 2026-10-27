@@ -129,15 +129,22 @@ export default function Projects() {
           {list.map((p) => (
             <div key={p.title} className="proj-slot">
               <article className="proj-card glass rounded-2xl" onPointerMove={glare}>
-                {p.image ? (
-                  <img
-                    src={asset(p.image)}
-                    alt={p.title}
-                    className="w-full h-[150px] object-cover border-b border-white/10"
-                  />
-                ) : (
-                  <div className="proj-thumb" />
-                )}
+                <div className="relative">
+                  {p.image ? (
+                    <img
+                      src={asset(p.image)}
+                      alt={p.title}
+                      className="w-full h-[150px] object-cover border-b border-white/10"
+                    />
+                  ) : (
+                    <div className="proj-thumb" />
+                  )}
+                  {p.featured && (
+                    <span className="mono absolute top-3 right-3 glass pill flex items-center gap-1.5 border border-amber-400/40 bg-black/75 px-3 py-1 text-[10px] font-semibold tracking-wider text-amber-300 backdrop-blur-md">
+                      ✦ FEATURED PROJECT
+                    </span>
+                  )}
+                </div>
                 <div className="p-5">
                   <h3 className="h-display text-xl text-white">{p.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[var(--text-dim)]">

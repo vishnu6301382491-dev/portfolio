@@ -37,6 +37,39 @@ const softSkills = [
   'Agile Collaboration'
 ]
 
+const resumeSkillGroups = [
+  {
+    category: 'Programming Languages',
+    icon: '☕',
+    skills: ['Java (Core, OOP)', 'Python', 'JavaScript (ES6+)'],
+    badge: 'Core Foundation'
+  },
+  {
+    category: 'Web Development',
+    icon: '🌐',
+    skills: ['Java Servlets', 'JSP', 'HTML5', 'CSS3', 'Next.js', 'React'],
+    badge: 'Full Stack'
+  },
+  {
+    category: 'Database Management',
+    icon: '🗄️',
+    skills: ['MySQL (ACID, Schema Design, Relational Queries)'],
+    badge: 'Relational DB'
+  },
+  {
+    category: 'Developer Tools',
+    icon: '🛠️',
+    skills: ['Git', 'GitHub', 'MS Excel'],
+    badge: 'Productivity'
+  },
+  {
+    category: 'Soft Skills',
+    icon: '🤝',
+    skills: ['Communication', 'Teamwork', 'Problem-Solving', 'Adaptability'],
+    badge: 'Professional'
+  }
+]
+
 const matrix = [
   { name: 'Java Full Stack', level: 'Mastery', pct: 92, note: 'Core Java, Servlets, JSP, OOP & Enterprise Web Architecture' },
   { name: 'MySQL Database', level: 'Advanced', pct: 88, note: 'Relational Schema Design, Complex Queries, Joins & ACID Transactions' },
@@ -153,6 +186,42 @@ export default function Skills() {
             </p>
           </div>
         ))}
+      </div>
+
+      {/* Resume Skills Taxonomy Grid */}
+      <div className="mx-auto mt-16 max-w-6xl px-6">
+        <div className="text-center mb-8">
+          <p className="eyebrow">{'// RESUME SKILLS CLASSIFICATION'}</p>
+          <h3 className="h-display mt-2 text-2xl text-white">Categorized Technical Profile</h3>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {resumeSkillGroups.map((g) => (
+            <div
+              key={g.category}
+              className="glass p-5 transition-transform duration-500 hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">{g.icon}</span>
+                  <h4 className="h-display text-base text-white">{g.category}</h4>
+                </div>
+                <span className="mono glass pill border border-white/10 px-2 py-0.5 text-[10px] text-[var(--accent)]">
+                  {g.badge}
+                </span>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {g.skills.map((s) => (
+                  <span
+                    key={s}
+                    className="mono rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white"
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Soft skills row */}

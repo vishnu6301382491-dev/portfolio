@@ -19,6 +19,7 @@ export type Project = {
   code: string;
   live?: string;
   image?: string;
+  featured?: boolean;
 };
 
 export const GITHUB = 'https://github.com/vishnu6301382491-dev';
@@ -26,21 +27,23 @@ export const GITHUB = 'https://github.com/vishnu6301382491-dev';
 export const projects: Project[] = [
   {
     title: 'FoodWala — Food Ordering Website',
-    blurb: 'Full-stack food ordering platform built for Bengaluru with 100+ restaurants, 750+ menu items, multi-role auth (customers, managers, delivery, admin), Razorpay test payments, and live orders.',
+    blurb: 'Enterprise Java full-stack food ordering platform built for Bengaluru with 100+ restaurants, 750+ menu dishes, search, cuisine filters, quick tags (fast delivery, pure veg, 4.5+ rating), promo codes, cart, checkout with card/UPI/net banking/COD, multi-role RBAC logins (customer, manager, delivery partner, admin), user profiles, saved addresses, Razorpay test mode payments, orders page, and dark mode.',
     tags: ['Java', 'Java Servlets', 'JSP', 'MySQL', 'HTML5', 'CSS3', 'JavaScript', 'Razorpay'],
     categories: ['Java', 'Full Stack', 'Web Dev'],
     code: 'https://github.com/vishnu6301382491-dev/Foodwala',
     live: 'https://vishnu6301382491-dev.github.io/Foodwala',
-    image: '/foodwala_preview.png'
+    image: '/foodwala_preview.png',
+    featured: true
   },
   {
     title: 'AQI Prediction Dashboard — Genetic Algorithm & KELM',
-    blurb: 'Atmospheric air quality prediction system utilizing Genetic Algorithms paired with Kernel Extreme Learning Machine (GA-KELM) for location-based pollutant forecasting and interactive visualizations.',
+    blurb: 'Predicts atmospheric air quality (AQI) with GA-KELM model pairing a genetic algorithm with Kernel Extreme Learning Machine. Features location-based air quality data with interactive visualizations on a responsive dark-themed page and forecasts upcoming AQI values with live data processed via Python and JavaScript.',
     tags: ['Python', 'Genetic Algorithm', 'KELM', 'Machine Learning', 'JavaScript', 'Chart.js'],
     categories: ['Data Science', 'AI/ML', 'Web Dev'],
     code: 'https://github.com/vishnu6301382491-dev/Air-Quality-Indexing-Forecasting-Via-Genetic-Algorithm',
     live: 'https://vishnu6301382491-dev.github.io/Air-Quality-Indexing-Forecasting-Via-Genetic-Algorithm',
-    image: '/aqi_dashboard_preview.jpg'
+    image: '/aqi_dashboard_preview.jpg',
+    featured: true
   },
   {
     title: 'RentalHub.com — Property & Vehicle Rental Engine',

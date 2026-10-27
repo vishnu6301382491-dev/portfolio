@@ -15,6 +15,7 @@ const channels = [
   { label: 'Phone', value: '+91 6301382491', href: 'tel:+916301382491' },
   { label: 'GitHub', value: 'vishnu6301382491-dev', href: 'https://github.com/vishnu6301382491-dev' },
   { label: 'LinkedIn', value: 'vishnu-vardhan-reddy-chinnapareddy', href: 'https://linkedin.com/in/vishnu-vardhan-reddy-chinnapareddy' },
+  { label: 'Portfolio', value: 'vishnu6301382491-dev.github.io/portfolio', href: 'https://vishnu6301382491-dev.github.io/portfolio' },
   { label: 'Resume PDF ↗', value: 'resume.pdf', href: asset('/resume.pdf') },
   { label: 'Instagram', value: '@vishnu_reddy_4503', href: 'https://instagram.com/vishnu_reddy_4503' },
 ]
@@ -146,7 +147,7 @@ export default function Contact() {
 
       <div className="relative mx-auto max-w-6xl">
         <p data-eyebrow className="eyebrow">
-          {'// 06 CONNECT'}
+          {'// 07 CONNECT'}
         </p>
         <h2
           data-split
@@ -166,7 +167,7 @@ export default function Contact() {
             <a
               key={c.label}
               href={c.href}
-              target={c.href.startsWith('http') ? '_blank' : undefined}
+              target={c.href.startsWith('http') || c.href.endsWith('.pdf') ? '_blank' : undefined}
               rel="noreferrer"
               className="chip glass pill mono"
               title={c.value}
@@ -259,7 +260,7 @@ export default function Contact() {
             </label>
             <button
               type="submit"
-              disabled={!valid && status !== 'sent'}
+              disabled={!valid || status === 'sending' || status === 'sent'}
               onPointerMove={pull}
               onPointerLeave={release}
               className="btn-primary shine w-full disabled:opacity-60 cursor-pointer text-center"

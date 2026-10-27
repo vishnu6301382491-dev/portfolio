@@ -35,7 +35,9 @@ const experiences = [
       'Git & GitHub'
     ],
     highlightProject: {
-      name: 'FoodWala — Food Ordering Platform',
+      name: 'FoodWala — Food Ordering Website',
+      description: 'Built for Bengaluru with 100+ restaurants, 750+ menu dishes, multi-role RBAC logins (customer, manager, delivery, admin), Razorpay test mode payments, orders page, and dark mode.',
+      tags: ['Java Servlets', 'JSP', 'MySQL', 'Razorpay API'],
       live: 'https://vishnu6301382491-dev.github.io/Foodwala',
       code: 'https://github.com/vishnu6301382491-dev/Foodwala'
     }
@@ -124,32 +126,49 @@ export default function Experience() {
               </div>
 
               {exp.highlightProject && (
-                <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-white/10 bg-white/[0.02] p-4">
-                  <div className="flex items-center gap-2">
-                    <span className="mono text-xs uppercase tracking-wider text-[var(--text-dim)]">
-                      Featured Project:
-                    </span>
-                    <span className="text-sm font-semibold text-white">
-                      {exp.highlightProject.name}
-                    </span>
+                <div className="mt-6 rounded-xl border border-white/10 bg-white/[0.03] p-5">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="mono glass pill border border-amber-400/30 px-2.5 py-0.5 text-[10px] uppercase tracking-wider text-amber-300">
+                          ✦ Flagship Project
+                        </span>
+                        <span className="text-base font-semibold text-white">
+                          {exp.highlightProject.name}
+                        </span>
+                      </div>
+                      <p className="mt-2 text-xs leading-relaxed text-[var(--text-dim)]">
+                        {exp.highlightProject.description}
+                      </p>
+                    </div>
+                    <div className="mono flex shrink-0 gap-3 text-xs tracking-wider">
+                      <a
+                        href={exp.highlightProject.live}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-primary text-xs !py-1.5 !px-3 font-semibold"
+                      >
+                        LIVE DEMO ↗
+                      </a>
+                      <a
+                        href={exp.highlightProject.code}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-ghost text-xs text-white !py-1.5 !px-3"
+                      >
+                        CODE ↗
+                      </a>
+                    </div>
                   </div>
-                  <div className="mono flex gap-4 text-xs tracking-wider">
-                    <a
-                      href={exp.highlightProject.live}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="nav-link text-[var(--accent)]"
-                    >
-                      LIVE DEMO ↗
-                    </a>
-                    <a
-                      href={exp.highlightProject.code}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="nav-link text-white"
-                    >
-                      SOURCE CODE ↗
-                    </a>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {exp.highlightProject.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="mono rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[10px] text-[var(--accent)]"
+                      >
+                        {t}
+                      </span>
+                    ))}
                   </div>
                 </div>
               )}

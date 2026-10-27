@@ -304,7 +304,7 @@ export default function Hero() {
           <canvas
             ref={canvas}
             role="img"
-            aria-label="Portrait of Vishnu Vardhan Reddy"
+            aria-label="Portrait of Chinnapareddy Vishnu Vardhan Reddy"
             className="h-full w-full object-cover"
             style={{ objectPosition: 'center 6%' }}
           />
@@ -318,7 +318,7 @@ export default function Hero() {
         {/* Headline, left */}
         <div className="hero-text absolute left-6 top-1/2 z-10 -translate-y-1/2 md:left-16 pointer-events-none">
           <p className="hi mono text-xs tracking-widest text-[var(--text-dim)]">
-            HI, I&apos;M <u className="text-white font-semibold">VISHNU VARDHAN REDDY</u>
+            HI, I&apos;M <u className="text-white font-semibold">CHINNAPAREDDY VISHNU VARDHAN REDDY</u>
           </p>
           <div className="mt-3 grid overflow-hidden">
             {['JAVA FULL STACK<br/>DEVELOPER', 'CREATIVE<br/>DEVELOPER', 'SCALABLE<br/>SYSTEMS'].map(
@@ -380,7 +380,7 @@ export default function Hero() {
               className="about-title h-display mt-4 text-white"
               style={{ fontSize: 'clamp(28px, 3.8vw, 50px)', lineHeight: 1.1 }}
             >
-              Hello, I&apos;m <span className="text-[var(--accent)]">Vishnu Vardhan Reddy</span>
+              Hello, I&apos;m <span className="text-[var(--accent)]">Chinnapareddy Vishnu Vardhan Reddy</span>
             </h2>
             <p className="about-in mt-5 max-w-xl text-sm leading-relaxed text-[var(--text-dim)]">
               Recent B.Tech graduate in Computer Science &amp; Engineering (Data Science) from Rise Krishna Sai
