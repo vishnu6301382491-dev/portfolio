@@ -1,13 +1,13 @@
 export const categories = [
   'All',
+  'Java',
   'Full Stack',
   'AI/ML',
+  'Data Science',
   'AgriTech',
   'Healthcare',
   'EdTech',
   'Travel',
-  'Data Science',
-  'Computer Vision',
   'Web Dev'
 ];
 
@@ -25,126 +25,138 @@ export const GITHUB = 'https://github.com/vishnu6301382491-dev';
 
 export const projects: Project[] = [
   {
-    title: 'Voyage — Intelligent Travel & Booking Platform',
-    blurb: 'Dynamic corporate & leisure travel booking platform with real-time seat matrices, schedule indexing, and multi-tenant billing.',
-    tags: ['React', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
-    categories: ['Full Stack', 'Travel', 'Web Dev'],
-    code: 'https://github.com/vishnu6301382491-dev/Voyage',
-    live: 'https://vishnu6301382491-dev.github.io/Voyage/',
-    image: '/voyage_travel_preview.jpg'
+    title: 'FoodWala — Food Ordering Website',
+    blurb: 'Full-stack food ordering platform built for Bengaluru with 100+ restaurants, 750+ menu items, multi-role auth (customers, managers, delivery, admin), Razorpay test payments, and live orders.',
+    tags: ['Java', 'Java Servlets', 'JSP', 'MySQL', 'HTML5', 'CSS3', 'JavaScript', 'Razorpay'],
+    categories: ['Java', 'Full Stack', 'Web Dev'],
+    code: 'https://github.com/vishnu6301382491-dev/Foodwala',
+    live: 'https://vishnu6301382491-dev.github.io/Foodwala',
+    image: '/foodwala_preview.png'
   },
   {
-    title: 'NutriGaze — Smart Produce Quality Classifier',
-    blurb: 'Computer vision automated grading pipeline using MobileNet transfer learning to classify fresh produce across 6 industrial quality grades.',
-    tags: ['Python', 'TensorFlow', 'MobileNet', 'OpenCV', 'Streamlit'],
-    categories: ['AI/ML', 'AgriTech', 'Computer Vision'],
-    code: 'https://github.com/vishnu6301382491-dev/NutriGaze-Smart-Produce-Quality-Classifier',
-    live: 'https://nutrigaze.streamlit.app',
-    image: '/rentalhub_preview.jpg'
-  },
-  {
-    title: 'PrepGenius — Placement Readiness & Skill Engine',
-    blurb: 'Full-stack student technical preparation platform with role-based interview mock tests, curated company question sets, and real-time skill radar charts.',
-    tags: ['Next.js', 'TypeScript', 'Node.js', 'MongoDB', 'Chart.js'],
-    categories: ['Full Stack', 'EdTech', 'Web Dev'],
-    code: 'https://github.com/vishnu6301382491-dev/PrepGenius',
-    live: 'https://vishnu6301382491-dev.github.io/PrepGenius/',
-    image: '/prepgenius_preview.jpg'
-  },
-  {
-    title: 'SpeakAI — Speech-to-Text & Intelligent NLP Suite',
-    blurb: 'Audio processing speech intelligence application featuring real-time acoustic transcription, sentiment detection, and automated summarization.',
-    tags: ['Python', 'Flask', 'Whisper AI', 'Transformers', 'NLTK'],
-    categories: ['AI/ML', 'Data Science'],
-    code: 'https://github.com/vishnu6301382491-dev/SpeakAI',
-    live: 'https://vishnu6301382491-dev.github.io/SpeakAI/',
-    image: '/speakai_preview.jpg'
-  },
-  {
-    title: 'RentalHub — Distributed Property & Vehicle Rental Engine',
-    blurb: 'Comprehensive microservices marketplace platform for property and vehicle rentals with identity-verified listings, escrow flows, and booking availability calendar.',
-    tags: ['Java', 'Spring Boot', 'React', 'MySQL', 'JWT', 'REST API'],
-    categories: ['Full Stack', 'Web Dev'],
-    code: 'https://github.com/vishnu6301382491-dev/RentalHub',
-    live: 'https://vishnu6301382491-dev.github.io/RentalHub/',
-    image: '/rentalhub_preview.jpg'
-  },
-  {
-    title: 'Smart Health Monitoring & Predictive Diagnostic Portal',
-    blurb: 'Clinical data dashboard computing patient cardiovascular vitals risk scores with rule-based automated physician escalation triggers.',
-    tags: ['Python', 'Flask', 'Scikit-Learn', 'Bootstrap', 'SQLite'],
-    categories: ['Healthcare', 'AI/ML', 'Data Science'],
-    code: 'https://github.com/vishnu6301382491-dev/Health-Monitoring-System',
-    live: 'https://vishnu6301382491-dev.github.io/Health-Monitoring-System/',
-    image: '/health_app_preview.jpg'
-  },
-  {
-    title: 'AQI Visualizer — Atmospheric Quality Prediction Platform',
-    blurb: 'Multi-city environmental telemetry visualizer streaming atmospheric sensor data with historical spatial heatmaps and time-series forecasts.',
-    tags: ['React', 'Python', 'FastAPI', 'Leaflet.js', 'Pandas'],
-    categories: ['Data Science', 'Web Dev'],
-    code: 'https://github.com/vishnu6301382491-dev/AQI-Visualizer',
-    live: 'https://vishnu6301382491-dev.github.io/AQI-Visualizer/',
+    title: 'AQI Prediction Dashboard — Genetic Algorithm & KELM',
+    blurb: 'Atmospheric air quality prediction system utilizing Genetic Algorithms paired with Kernel Extreme Learning Machine (GA-KELM) for location-based pollutant forecasting and interactive visualizations.',
+    tags: ['Python', 'Genetic Algorithm', 'KELM', 'Machine Learning', 'JavaScript', 'Chart.js'],
+    categories: ['Data Science', 'AI/ML', 'Web Dev'],
+    code: 'https://github.com/vishnu6301382491-dev/Air-Quality-Indexing-Forecasting-Via-Genetic-Algorithm',
+    live: 'https://vishnu6301382491-dev.github.io/Air-Quality-Indexing-Forecasting-Via-Genetic-Algorithm',
     image: '/aqi_dashboard_preview.jpg'
   },
   {
-    title: 'Deepfake Guardian — Forensic Facial Authenticity Verifier',
-    blurb: 'Deep learning forensic inspection system analyzing facial landmark frequency anomalies and spatial inconsistencies to flag synthetic media.',
-    tags: ['Python', 'PyTorch', 'OpenCV', 'FaceNet', 'CNNs'],
-    categories: ['AI/ML', 'Computer Vision'],
-    code: 'https://github.com/vishnu6301382491-dev/Deepfake-Detection',
+    title: 'RentalHub.com — Property & Vehicle Rental Engine',
+    blurb: 'Modern rental marketplace for discovering, listing, and booking rental equipment and properties with real-time filters, booking management, and owner dashboard.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'MongoDB', 'React', 'Lucide React'],
+    categories: ['Full Stack', 'Web Dev'],
+    code: 'https://github.com/vishnu6301382491-dev/RentalHub.com',
+    live: 'https://vishnu6301382491-dev.github.io/RentalHub.com/',
     image: '/rentalhub_preview.jpg'
   },
   {
-    title: 'AgriSense — Crop Health & Soil Moisture Telemetry',
-    blurb: 'Precision agricultural IoT dashboard mapping NPK soil metrics and multi-spectral NDVI imagery to suggest targeted irrigation cycles.',
-    tags: ['React', 'Node.js', 'Express', 'Chart.js', 'Tailwind CSS'],
-    categories: ['AgriTech', 'Full Stack', 'Data Science'],
-    code: 'https://github.com/vishnu6301382491-dev/AgriSense',
-    live: 'https://vishnu6301382491-dev.github.io/AgriSense/',
-    image: '/rentalhub_preview.jpg'
+    title: 'AI-Speaking-Agent (SpeakAI) — Speech & Fluency Coach',
+    blurb: 'AI-powered English speaking partner delivering real-time voice feedback, automated grammar correction, vocabulary suggestions, and pronunciation analytics.',
+    tags: ['React', 'Vite', 'Node.js', 'Express', 'Tailwind CSS', 'Speech AI'],
+    categories: ['AI/ML', 'EdTech'],
+    code: 'https://github.com/vishnu6301382491-dev/AI-Speaking-Agent',
+    live: 'https://vishnu6301382491-dev.github.io/AI-Speaking-Agent/',
+    image: '/speakai_preview.jpg'
   },
   {
-    title: 'PulseRate — Wearable PPG Sensor Vital Analytics Engine',
-    blurb: 'Digital signal processing utility extracting heart rate variability (HRV) and real-time arrhythmia alerts from optical photoplethysmography data.',
-    tags: ['Python', 'NumPy', 'SciPy', 'Matplotlib', 'Streamlit'],
-    categories: ['Healthcare', 'Data Science'],
-    code: 'https://github.com/vishnu6301382491-dev/PulseRate-Analyzer',
+    title: 'AGRI-AI — Crop Disease Scanner & Advisory Portal',
+    blurb: 'Agricultural intelligence platform enabling farmers to detect crop diseases from leaf scans with severity assessments, remedies, and real-time advisory.',
+    tags: ['JavaScript', 'React', 'Tailwind CSS', 'TensorFlow.js', 'Machine Learning'],
+    categories: ['AgriTech', 'AI/ML'],
+    code: 'https://github.com/vishnu6301382491-dev/AGRI-AI',
+    live: 'https://vishnu6301382491-dev.github.io/AGRI-AI/',
     image: '/health_app_preview.jpg'
   },
   {
-    title: 'CodeVault — Secure Developer Snippet & Secrets Repository',
-    blurb: 'Encrypted cloud code snippet manager with syntax-aware search, private team workspaces, and AES-256 client-side payload encryption.',
-    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Prisma', 'PostgreSQL'],
-    categories: ['Full Stack', 'Web Dev'],
-    code: 'https://github.com/vishnu6301382491-dev/CodeVault',
-    live: 'https://vishnu6301382491-dev.github.io/CodeVault/',
-    image: '/rentalhub_preview.jpg'
+    title: 'PREPGENIUS — AI Placement & Technical Interview Engine',
+    blurb: 'Technical interview readiness platform featuring role-specific AI coding mocks, automated code review, system design drills, and skill radar scoring.',
+    tags: ['JavaScript', 'React', 'Node.js', 'Tailwind CSS', 'AI APIs'],
+    categories: ['Full Stack', 'EdTech', 'Web Dev'],
+    code: 'https://github.com/vishnu6301382491-dev/PREPGENIUS',
+    live: 'https://vishnu6301382491-dev.github.io/PREPGENIUS/',
+    image: '/prepgenius_preview.jpg'
   },
   {
-    title: 'EcoRoute — Carbon-Optimized Urban Logistics Navigator',
-    blurb: 'Multi-stop routing algorithm optimizing commercial delivery paths against fuel consumption curves, traffic density, and vehicle elevation models.',
-    tags: ['Python', 'Genetic Algorithms', 'NetworkX', 'OpenStreetMap'],
-    categories: ['AI/ML', 'Data Science'],
-    code: 'https://github.com/vishnu6301382491-dev/EcoRoute-Optimizer',
+    title: 'Travel-Booking (Voyage) — Multi-Service Travel Platform',
+    blurb: 'Consolidated travel booking engine featuring 8 travel services including flights, hotel reservations, vacation packages, car rentals, and administrative controls.',
+    tags: ['React', 'Vite', 'JavaScript', 'React Router', 'Lucide React'],
+    categories: ['Full Stack', 'Travel', 'Web Dev'],
+    code: 'https://github.com/vishnu6301382491-dev/Travel-Booking',
+    live: 'https://vishnu6301382491-dev.github.io/Travel-Booking/',
     image: '/voyage_travel_preview.jpg'
   },
   {
-    title: 'FinTrack — Personal Wealth & Automated Expense Analytics',
-    blurb: 'Financial tracking web app integrating bank statement parsing, category expenditure charts, and monthly predictive budgeting budgets.',
-    tags: ['React', 'Express', 'MongoDB', 'JWT', 'Chart.js'],
-    categories: ['Full Stack', 'Web Dev'],
-    code: 'https://github.com/vishnu6301382491-dev/FinTrack',
-    live: 'https://vishnu6301382491-dev.github.io/FinTrack/',
+    title: 'Railway Reservation System — Booking & Ticketing Portal',
+    blurb: 'High-reliability railway seat booking and reservation platform managing train schedules, passenger PNR generation, berth quotas, and cancellation workflows.',
+    tags: ['Java', 'OOP', 'MySQL', 'JDBC', 'HTML5', 'CSS3'],
+    categories: ['Java', 'Full Stack', 'Web Dev'],
+    code: 'https://github.com/vishnu6301382491-dev/Railway-Reservation-System',
+    live: 'https://vishnu6301382491-dev.github.io/Railway-Reservation-System/',
     image: '/rentalhub_preview.jpg'
   },
   {
-    title: 'CogniRead — Dyslexia-Friendly Document & Audio Reader',
-    blurb: 'Assistive reading interface featuring bionic typography rendering, automated text-to-speech audio synthesis, and visual focus tracking lines.',
-    tags: ['JavaScript', 'Web Speech API', 'HTML5 Canvas', 'CSS3'],
-    categories: ['EdTech', 'Healthcare', 'Web Dev'],
-    code: 'https://github.com/vishnu6301382491-dev/CogniRead',
-    live: 'https://vishnu6301382491-dev.github.io/CogniRead/',
-    image: '/speakai_preview.jpg'
+    title: 'Smart Job Portal — Recruitment & Career Gateway',
+    blurb: 'Full-stack career board allowing job seekers to search and apply for openings with automated resume profiling and recruiters to post positions.',
+    tags: ['JavaScript', 'React', 'Node.js', 'Express', 'MongoDB'],
+    categories: ['Full Stack', 'Web Dev'],
+    code: 'https://github.com/vishnu6301382491-dev/smart-job-portal',
+    live: 'https://vishnu6301382491-dev.github.io/smart-job-portal/',
+    image: '/rentalhub_preview.jpg'
+  },
+  {
+    title: 'Seamless Health Appointment Booking (DocSpot)',
+    blurb: 'Healthcare scheduling platform offering real-time doctor availability calendars, specialty filtering, and instantaneous appointment booking confirmations.',
+    tags: ['React', 'Express', 'Node.js', 'Framer Motion', 'Tailwind CSS'],
+    categories: ['Healthcare', 'Full Stack', 'Web Dev'],
+    code: 'https://github.com/vishnu6301382491-dev/Seamless-appoinment-booking-for-health',
+    live: 'https://vishnu6301382491-dev.github.io/Seamless-appoinment-booking-for-health/',
+    image: '/health_app_preview.jpg'
+  },
+  {
+    title: 'NutriGaze — Produce Sorting via Transfer Learning',
+    blurb: 'Computer vision automated grading pipeline using MobileNet transfer learning to classify fresh fruits and vegetables into 10 healthy/rotten quality grades.',
+    tags: ['Python', 'TensorFlow', 'Keras', 'Transfer Learning', 'OpenCV'],
+    categories: ['AI/ML', 'AgriTech'],
+    code: 'https://github.com/vishnu6301382491-dev/Smart-Sorting-Transfer-Learning-for-Identifying-Rotten-Fruits-and-Vegetables',
+    live: 'https://vishnu6301382491-dev.github.io/Smart-Sorting-Transfer-Learning-for-Identifying-Rotten-Fruits-and-Vegetables/',
+    image: '/aqi_dashboard_preview.jpg'
+  },
+  {
+    title: 'Smart Attendance System — Automated Campus Tracking',
+    blurb: 'Automated campus and enterprise attendance management system with secure identity verification, timestamping, and analytics dashboards.',
+    tags: ['JavaScript', 'React', 'Node.js', 'Express', 'MongoDB'],
+    categories: ['Full Stack', 'EdTech', 'Web Dev'],
+    code: 'https://github.com/vishnu6301382491-dev/Smart_Attedance_System',
+    live: 'https://vishnu6301382491-dev.github.io/Smart_Attedance_System/',
+    image: '/prepgenius_preview.jpg'
+  },
+  {
+    title: 'Health Management System — Clinical Records Portal',
+    blurb: 'Clinical patient record management portal tracking patient vitals, diagnostic histories, doctor consultations, and prescription reports.',
+    tags: ['JavaScript', 'HTML5', 'CSS3', 'REST APIs', 'MySQL'],
+    categories: ['Healthcare', 'Web Dev'],
+    code: 'https://github.com/vishnu6301382491-dev/Health-Management-System-',
+    live: 'https://vishnu6301382491-dev.github.io/Health-Management-System-/',
+    image: '/health_app_preview.jpg'
+  },
+  {
+    title: 'AGRI365 & Price Info — Real-Time Mandi Crop Pricing',
+    blurb: 'Agricultural commodity pricing portal delivering daily mandi rate updates, transparent crop price comparisons, and weather forecasts for farmers.',
+    tags: ['JavaScript', 'HTML5', 'CSS3', 'REST APIs', 'Tailwind CSS'],
+    categories: ['AgriTech', 'Web Dev'],
+    code: 'https://github.com/vishnu6301382491-dev/Price_Info_project',
+    live: 'https://vishnu6301382491-dev.github.io/Price_Info_project/',
+    image: '/health_app_preview.jpg'
+  },
+  {
+    title: 'Developer Portfolio Codebase',
+    blurb: 'Personal developer portfolio web application built with Next.js, Obsidian black visual language, fluid scrub timeline, glassmorphic UI, and interactive CLI.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'GSAP', 'Lenis'],
+    categories: ['Full Stack', 'Web Dev'],
+    code: 'https://github.com/vishnu6301382491-dev/portfolio',
+    live: 'https://vishnu6301382491-dev.github.io/portfolio/',
+    image: '/rentalhub_preview.jpg'
   }
 ];

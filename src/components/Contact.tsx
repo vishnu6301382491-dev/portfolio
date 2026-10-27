@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useSplitReveal } from '@/lib/useReveal'
+import { asset } from '@/lib/asset'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -14,6 +15,7 @@ const channels = [
   { label: 'Phone', value: '+91 6301382491', href: 'tel:+916301382491' },
   { label: 'GitHub', value: 'vishnu6301382491-dev', href: 'https://github.com/vishnu6301382491-dev' },
   { label: 'LinkedIn', value: 'vishnu-vardhan-reddy-chinnapareddy', href: 'https://linkedin.com/in/vishnu-vardhan-reddy-chinnapareddy' },
+  { label: 'Resume PDF ↗', value: 'resume.pdf', href: asset('/resume.pdf') },
   { label: 'Instagram', value: '@vishnu_reddy_4503', href: 'https://instagram.com/vishnu_reddy_4503' },
 ]
 
@@ -276,25 +278,25 @@ export default function Contact() {
 
       <footer className="relative mx-auto mt-24 grid max-w-6xl gap-8 border-t border-white/10 pt-8 md:grid-cols-3">
         <div className="mono text-[11px] leading-6">
-          <p className="text-[var(--text-dim)]">{'// System Architecture'}</p>
-          <p className="text-white">Full-Stack Web Engineering</p>
-          <p className="text-white">AI and Machine Learning Solutions</p>
+          <p className="text-[var(--text-dim)]">{'// Specialization'}</p>
+          <p className="text-white">Java Full Stack Development</p>
+          <p className="text-white">Relational DB &amp; Applied ML Systems</p>
         </div>
         <div className="mono text-center text-[11px] leading-6">
-          <p className="text-[var(--text-dim)]">{'// Status'}</p>
-          <p className="text-[var(--green)]">Open to Opportunities</p>
+          <p className="text-[var(--text-dim)]">{'// Current Status'}</p>
+          <p className="text-[var(--green)]">Open to Entry-Level Java Developer Roles</p>
           <a
             href="#projects"
             className="underline text-[var(--text-dim)] hover:text-white"
           >
-            View Work
+            View Projects (19 Repos)
           </a>
         </div>
         <div className="mono text-[11px] leading-6 md:text-right">
-          <p className="text-[var(--text-dim)]">{'// Region'}</p>
-          <p className="text-white">Ongole, India / Worldwide</p>
+          <p className="text-[var(--text-dim)]">{'// Location'}</p>
+          <p className="text-white">Ongole, Andhra Pradesh, India</p>
           <p className="text-[var(--text-dim)]">
-            2026 · Dark Glassmorphism Architecture
+            2026 · Dark Glassmorphism Portfolio
           </p>
         </div>
       </footer>

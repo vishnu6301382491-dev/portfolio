@@ -243,8 +243,8 @@ export default function Hero() {
       tl.to(
         counts,
         {
-          repos: 14,
-          demos: 11,
+          repos: 19,
+          demos: 17,
           duration: 0.06,
           ease: 'none',
           onUpdate: () => {
@@ -318,15 +318,15 @@ export default function Hero() {
         {/* Headline, left */}
         <div className="hero-text absolute left-6 top-1/2 z-10 -translate-y-1/2 md:left-16 pointer-events-none">
           <p className="hi mono text-xs tracking-widest text-[var(--text-dim)]">
-            HI, I&apos;M <u className="text-white font-semibold">VISHNU</u>
+            HI, I&apos;M <u className="text-white font-semibold">VISHNU VARDHAN REDDY</u>
           </p>
           <div className="mt-3 grid overflow-hidden">
-            {['CREATIVE<br/>DEVELOPER', 'FULL STACK<br/>DEV', 'SCALABLE<br/>SYSTEMS'].map(
+            {['JAVA FULL STACK<br/>DEVELOPER', 'CREATIVE<br/>DEVELOPER', 'SCALABLE<br/>SYSTEMS'].map(
               (t, i) => (
                 <span
                   key={i}
                   className={`word word-${i} h-display col-start-1 row-start-1 uppercase text-white`}
-                  style={{ fontSize: 'clamp(44px, 7.5vw, 100px)' }}
+                  style={{ fontSize: 'clamp(40px, 7vw, 96px)' }}
                   dangerouslySetInnerHTML={{ __html: t }}
                 />
               )
@@ -335,17 +335,26 @@ export default function Hero() {
         </div>
 
         {/* Description, top right - clean paragraph matching reference screenshot */}
-        <div className="hero-meta hero-text absolute right-6 top-24 z-10 hidden max-w-[320px] md:block md:right-16 text-right">
+        <div className="hero-meta hero-text absolute right-6 top-24 z-10 hidden max-w-[340px] md:block md:right-16 text-right">
           <p className="text-xs leading-relaxed text-[var(--text-dim)]">
-            Full-stack software engineer &amp; AI practitioner building resilient web
-            platforms, distributed microservices, and applied intelligence systems.
+            Java Full Stack Developer &amp; recent B.Tech CSE (Data Science) graduate.
+            Intern at TAP Academy building high-performance Java Servlets, JSP, MySQL,
+            and Next.js enterprise web applications.
           </p>
         </div>
 
         {/* Action buttons, bottom right */}
-        <div className="hero-meta hero-text absolute bottom-10 right-6 z-10 flex gap-3 md:right-16">
+        <div className="hero-meta hero-text absolute bottom-10 right-6 z-10 flex flex-wrap gap-3 md:right-16">
           <a href="#projects" className="btn-primary text-sm font-semibold">
             View My Work
+          </a>
+          <a
+            href={asset('/resume.pdf')}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-ghost text-sm text-white"
+          >
+            Resume ↗
           </a>
           <a
             href="#contact"
@@ -365,7 +374,7 @@ export default function Hero() {
           <div className="w-full md:w-[50%] lg:w-[48%]">
             <p className="about-in eyebrow flex items-center gap-2">
               <i className="dot" />
-              {'// SYSTEM PROFILE'}
+              {'// SYSTEM PROFILE · JAVA FULL STACK DEVELOPER'}
             </p>
             <h2
               className="about-title h-display mt-4 text-white"
@@ -374,23 +383,23 @@ export default function Hero() {
               Hello, I&apos;m <span className="text-[var(--accent)]">Vishnu Vardhan Reddy</span>
             </h2>
             <p className="about-in mt-5 max-w-xl text-sm leading-relaxed text-[var(--text-dim)]">
-              Computer Science and Data Science undergraduate at Rise Krishna Sai
-              Prakasam Group of Institutions. I engineer scalable web applications,
-              design REST microservices and extract insight through data analytics and
-              machine learning.
+              Recent B.Tech graduate in Computer Science &amp; Engineering (Data Science) from Rise Krishna Sai
+              Prakasam Group of Institutions (CGPA: 7.78) and Java Full Stack Intern at TAP Academy.
+              Built FoodWala (Java Servlets &amp; JSP food ordering platform with Razorpay and role-based auth)
+              and GA-KELM AQI Prediction Dashboard. Seeking an entry-level Java Developer role.
             </p>
             <div className="mt-7 grid grid-cols-3 gap-3 max-w-xl">
               <div className="about-chip glass p-4">
-                <b className="n-repos h-display text-2xl text-white">14+</b>
+                <b className="n-repos h-display text-2xl text-white">19+</b>
                 <span className="eyebrow mt-1 block">GitHub repos</span>
               </div>
               <div className="about-chip glass p-4">
-                <b className="n-demos h-display text-2xl text-white">11+</b>
+                <b className="n-demos h-display text-2xl text-white">17+</b>
                 <span className="eyebrow mt-1 block">Live demos</span>
               </div>
               <div className="about-chip glass p-4">
-                <b className="h-display text-2xl text-white">2026</b>
-                <span className="eyebrow mt-1 block">B.Tech CSE (DS)</span>
+                <b className="h-display text-2xl text-white">7.78</b>
+                <span className="eyebrow mt-1 block">B.Tech CGPA</span>
               </div>
             </div>
           </div>

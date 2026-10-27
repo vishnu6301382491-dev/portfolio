@@ -6,9 +6,9 @@ import Cursor from '@/components/Cursor'
 import { asset } from '@/lib/asset'
 
 export const metadata = {
-  title: 'Vishnu.dev | Full Stack Developer & AI Enthusiast',
+  title: 'Chinnapareddy Vishnu Vardhan Reddy | Java Full Stack Developer',
   description:
-    'Portfolio of Chinnapareddy Vishnu Vardhan Reddy: Full Stack and AI engineer.',
+    'Portfolio of Chinnapareddy Vishnu Vardhan Reddy — Java Full Stack Developer, Intern at TAP Academy, and B.Tech CSE (Data Science) graduate. 19 repositories, 17+ live deployments including FoodWala & AQI Prediction Dashboard.',
   icons: {
     icon: asset('/profile.jpeg'),
   },

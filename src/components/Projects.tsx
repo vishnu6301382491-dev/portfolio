@@ -194,7 +194,7 @@ export default function Projects() {
             rel="noreferrer"
             className="btn-ghost text-sm text-white"
           >
-            View All 14 Repositories
+            View All 19 Repositories
           </a>
         </div>
       </div>

@@ -14,6 +14,43 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    id: "foodwala",
+    name: "FoodWala – Food Ordering Website",
+    category: "Java",
+    description: "Enterprise Java full-stack food delivery web application built for Bengaluru with 100+ restaurants, 750+ menu items, Razorpay test payments, and multi-role authentication.",
+    technologies: ["Java", "Java Servlets", "JSP", "MySQL", "HTML5", "CSS3", "JavaScript", "Razorpay API"],
+    repository: "https://github.com/vishnu6301382491-dev/Foodwala",
+    liveUrl: "https://vishnu6301382491-dev.github.io/Foodwala",
+    image: "/foodwala_preview.png",
+    featured: true,
+    problemSolved: "Solves end-to-end food ordering friction in metropolitan Bengaluru with verified restaurant catalogs, lightning-fast ordering, multiple payment channels, and dedicated stakeholder portals.",
+    features: [
+      "Catalog of 100+ iconic Bengaluru restaurants and 750+ categorized menu dishes",
+      "Instant search, cuisine filters, and quick tags (fast delivery, pure veg, 4.5+ rating, promo codes)",
+      "Multi-role RBAC access with separate dashboards for Customers, Restaurant Managers, Delivery Partners, and Admin Staff",
+      "Seamless cart and checkout supporting Credit/Debit Cards, UPI, Net Banking, and Cash on Delivery with Razorpay test mode integration",
+      "Real-time order tracking, address book management, order history, dark mode theme toggle, and receipt generation"
+    ]
+  },
+  {
+    id: "aqi-genetic",
+    name: "AQI Prediction Dashboard (GA-KELM)",
+    category: "Data Science",
+    description: "Advanced atmospheric air quality prediction system utilizing a Genetic Algorithm paired with Kernel Extreme Learning Machine (GA-KELM) to forecast regional pollutant levels.",
+    technologies: ["Python", "Genetic Algorithm", "KELM", "Machine Learning", "JavaScript", "Chart.js", "HTML5"],
+    repository: "https://github.com/vishnu6301382491-dev/Air-Quality-Indexing-Forecasting-Via-Genetic-Algorithm",
+    liveUrl: "https://vishnu6301382491-dev.github.io/Air-Quality-Indexing-Forecasting-Via-Genetic-Algorithm",
+    image: "/aqi_dashboard_preview.jpg",
+    featured: true,
+    problemSolved: "Overcomes traditional statistical forecasting limits by pairing evolutionary Genetic Algorithms with Kernel Extreme Learning Machine for hyperparameter optimization and accurate pollutant forecasting.",
+    features: [
+      "Hybrid GA-KELM model optimizing kernel parameters and hidden layer weights for high forecasting accuracy",
+      "Location-based telemetry monitoring key atmospheric pollutants including PM2.5, PM10, NO2, CO, and O3",
+      "Interactive time-series visualizations, historical pollutant comparisons, and trend charts on a dark-themed UI",
+      "Real-time AQI health category advisories and predictive warning thresholds for environmental safety"
+    ]
+  },
+  {
     id: "rentalhub",
     name: "RentalHub.com",
     category: "Full Stack",
@@ -34,7 +71,7 @@ export const PROJECTS: Project[] = [
   {
     id: "speakai",
     name: "AI-Speaking-Agent (SpeakAI)",
-    category: "AI / ML",
+    category: "AI/ML",
     description: "AI-powered English speaking coach providing real-time voice feedback, grammar analysis, vocabulary expansion, and pronunciation practice.",
     technologies: ["React", "Vite", "Node.js", "Express", "Tailwind CSS", "Speech AI"],
     repository: "https://github.com/vishnu6301382491-dev/AI-Speaking-Agent",
@@ -69,7 +106,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "prepgenius",
-    name: "PREPGENIUS AI Portal",
+    name: "PREPGENIUS AI Placement Engine",
     category: "EdTech",
     description: "AI-driven technical interview preparation platform offering customized coding mock interviews, system design drills, and instant feedback.",
     technologies: ["JavaScript", "React", "Node.js", "Tailwind CSS", "AI API"],
@@ -94,7 +131,7 @@ export const PROJECTS: Project[] = [
     repository: "https://github.com/vishnu6301382491-dev/Travel-Booking",
     liveUrl: "https://vishnu6301382491-dev.github.io/Travel-Booking/",
     image: "/voyage_travel_preview.jpg",
-    featured: true,
+    featured: false,
     problemSolved: "Streamlines vacation planning by consolidating multi-service travel bookings into one smooth interface with admin management.",
     features: [
       "Unified booking portal for flights, hotels, packages, and car rentals",
@@ -104,34 +141,28 @@ export const PROJECTS: Project[] = [
     ]
   },
   {
-    id: "aqi-genetic",
-    name: "Air Quality Forecasting (GA)",
-    category: "Data Science",
-    description: "Atmospheric air quality prediction system utilizing Genetic Algorithms and machine learning regression to model pollutant dynamics.",
-    technologies: ["Python", "Genetic Algorithms", "Machine Learning", "HTML5", "Chart.js"],
-    repository: "https://github.com/vishnu6301382491-dev/Air-Quality-Indexing-Forecasting-Via-Genetic-Algorithm",
-    liveUrl: "https://vishnu6301382491-dev.github.io/Air-Quality-Indexing-Forecasting-Via-Genetic-Algorithm/",
-    image: "/aqi_dashboard_preview.jpg",
-    featured: true,
-    problemSolved: "Predicts regional air quality index trends using evolutionary computing algorithms to optimize hyperparameter selection.",
-    features: [
-      "Genetic Algorithm optimization for hyperparameter selection and forecasting",
-      "Real-time pollutant tracking (PM2.5, PM10, NO2, CO, O3)",
-      "Interactive trend visualization charts and historical comparison tools",
-      "Environmental safety warnings based on predicted AQI index thresholds"
-    ]
+    id: "railway-reservation",
+    name: "Railway Reservation System",
+    category: "Java",
+    description: "Java-driven railway ticketing and seat reservation application with train scheduling, PNR generation, and berth allocation logic.",
+    technologies: ["Java", "OOP", "MySQL", "JDBC", "HTML5", "CSS3"],
+    repository: "https://github.com/vishnu6301382491-dev/Railway-Reservation-System",
+    liveUrl: "https://vishnu6301382491-dev.github.io/Railway-Reservation-System/",
+    image: "/rentalhub_preview.jpg",
+    featured: false,
+    problemSolved: "Simulates high-concurrency train seat booking, quota management, and cancellation refunds using relational data constraints."
   },
   {
-    id: "nutrigaze",
-    name: "NutriGaze Smart Produce Sorting",
-    category: "Computer Vision",
-    description: "AI computer vision system using Transfer Learning with pre-trained CNN models to classify produce into 10 healthy/rotten classes.",
-    technologies: ["Python", "TensorFlow", "Keras", "Transfer Learning", "HTML5"],
-    repository: "https://github.com/vishnu6301382491-dev/Smart-Sorting-Transfer-Learning-for-Identifying-Rotten-Fruits-and-Vegetables",
-    liveUrl: "https://vishnu6301382491-dev.github.io/Smart-Sorting-Transfer-Learning-for-Identifying-Rotten-Fruits-and-Vegetables/",
-    image: "/aqi_dashboard_preview.jpg",
+    id: "smart-job-portal",
+    name: "Smart Job Portal (Client & Server)",
+    category: "Full Stack",
+    description: "End-to-end recruitment portal allowing job seekers to search & apply for positions while enabling employers to post jobs and review resumes.",
+    technologies: ["JavaScript", "React", "Node.js", "Express", "MongoDB"],
+    repository: "https://github.com/vishnu6301382491-dev/smart-job-portal",
+    liveUrl: "https://vishnu6301382491-dev.github.io/smart-job-portal/",
+    image: "/rentalhub_preview.jpg",
     featured: false,
-    problemSolved: "Automates produce quality control in supply chains to reduce food waste and identify rotten fruits/vegetables instantly."
+    problemSolved: "Connects employers and candidates efficiently with job application management and candidate tracking."
   },
   {
     id: "docspot",
@@ -146,75 +177,63 @@ export const PROJECTS: Project[] = [
     problemSolved: "Simplifies healthcare access by offering real-time doctor availability calendars and instant appointment confirmations."
   },
   {
-    id: "smart-job-portal",
-    name: "Smart Job Portal (Client & Server)",
-    category: "Full Stack",
-    description: "End-to-end recruitment portal allowing job seekers to search & apply for positions while enabling employers to post jobs.",
-    technologies: ["JavaScript", "React", "Node.js", "Express", "MongoDB"],
-    repository: "https://github.com/vishnu6301382491-dev/smart-job-portal",
-    liveUrl: "https://vishnu6301382491-dev.github.io/smart-job-portal/",
-    image: "/rentalhub_preview.jpg",
+    id: "nutrigaze",
+    name: "NutriGaze Smart Produce Sorting",
+    category: "AI/ML",
+    description: "AI computer vision system using Transfer Learning with pre-trained CNN models to classify produce into 10 healthy/rotten classes.",
+    technologies: ["Python", "TensorFlow", "Keras", "Transfer Learning", "OpenCV"],
+    repository: "https://github.com/vishnu6301382491-dev/Smart-Sorting-Transfer-Learning-for-Identifying-Rotten-Fruits-and-Vegetables",
+    liveUrl: "https://vishnu6301382491-dev.github.io/Smart-Sorting-Transfer-Learning-for-Identifying-Rotten-Fruits-and-Vegetables/",
+    image: "/aqi_dashboard_preview.jpg",
     featured: false,
-    problemSolved: "Connects employers and candidates efficiently with job application management and candidate tracking."
+    problemSolved: "Automates produce quality control in supply chains to reduce food waste and identify rotten fruits/vegetables instantly."
   },
   {
-    id: "smart-job-portal-api",
-    name: "Smart_Job_Portal Architecture",
-    category: "Backend",
-    description: "Full-stack recruitment REST API micro-backend engine supporting job indexing, candidate applications, and auth RBAC.",
-    technologies: ["Node.js", "Express", "MongoDB", "REST APIs", "JWT"],
-    repository: "https://github.com/vishnu6301382491-dev/Smart_Job_Portal",
-    liveUrl: "https://vishnu6301382491-dev.github.io/Smart_Job_Portal/",
-    image: "/rentalhub_preview.jpg",
+    id: "smart-attendance",
+    name: "Smart Attendance System",
+    category: "Full Stack",
+    description: "Digital academic and workplace attendance management system with biometric/QR verification and automated reporting analytics.",
+    technologies: ["JavaScript", "React", "Node.js", "Express", "MongoDB"],
+    repository: "https://github.com/vishnu6301382491-dev/Smart_Attedance_System",
+    liveUrl: "https://vishnu6301382491-dev.github.io/Smart_Attedance_System/",
+    image: "/prepgenius_preview.jpg",
     featured: false,
-    problemSolved: "Scalable backend service architecture powering job board queries, security tokens, and candidate database operations."
+    problemSolved: "Eliminates proxy attendance and manual register tallying through automated digital timestamping and percentage calculations."
+  },
+  {
+    id: "health-system",
+    name: "Health Management System",
+    category: "Healthcare",
+    description: "Comprehensive medical record management portal tracking patient vitals, clinical diagnostic reports, and physician prescriptions.",
+    technologies: ["JavaScript", "HTML5", "CSS3", "REST APIs", "MySQL"],
+    repository: "https://github.com/vishnu6301382491-dev/Health-Management-System-",
+    liveUrl: "https://vishnu6301382491-dev.github.io/Health-Management-System-/",
+    image: "/health_app_preview.jpg",
+    featured: false,
+    problemSolved: "Centralizes clinical history and patient diagnosis documentation in an accessible, structured digital format."
   },
   {
     id: "agri365",
-    name: "AGRI365 Platform",
+    name: "AGRI365 Platform & Price Info",
     category: "AgriTech",
-    description: "Comprehensive agricultural platform delivering real-time crop market pricing, weather forecasting, and farming diagnostics.",
-    technologies: ["TypeScript", "React", "Tailwind CSS", "REST APIs"],
-    repository: "https://github.com/vishnu6301382491-dev/AGRI365",
-    liveUrl: "https://vishnu6301382491-dev.github.io/Price_Info_project/",
-    image: "/health_app_preview.jpg",
-    featured: false,
-    problemSolved: "Provides daily crop price transparency and weather alerts to help farmers maximize agricultural yield."
-  },
-  {
-    id: "price-info",
-    name: "Price_Info_project",
-    category: "AgriTech",
-    description: "Real-time agricultural market pricing web portal providing daily updates on commodity prices and market trends.",
-    technologies: ["JavaScript", "HTML5", "CSS3", "REST APIs"],
+    description: "Real-time agricultural market commodity pricing and weather diagnostic web application providing daily crop rates across regional mandis.",
+    technologies: ["JavaScript", "HTML5", "CSS3", "REST APIs", "Tailwind CSS"],
     repository: "https://github.com/vishnu6301382491-dev/Price_Info_project",
     liveUrl: "https://vishnu6301382491-dev.github.io/Price_Info_project/",
     image: "/health_app_preview.jpg",
     featured: false,
-    problemSolved: "Enables fast local crop pricing search and market rate comparisons."
+    problemSolved: "Delivers daily transparent mandi pricing to prevent middleman exploitation and empower farmers."
   },
   {
     id: "portfolio-repo",
     name: "Developer Portfolio Codebase",
     category: "Web Dev",
-    description: "Personal developer portfolio web application featuring modern glassmorphism, 3D WebGL scenes, interactive CLI, and full project showcase.",
+    description: "Personal developer portfolio web application featuring modern dark glassmorphism, 3D WebGL scenes, interactive CLI, and full project showcase.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "GSAP", "Lenis"],
     repository: "https://github.com/vishnu6301382491-dev/portfolio",
     liveUrl: "https://vishnu6301382491-dev.github.io/portfolio/",
     image: "/rentalhub_preview.jpg",
     featured: false,
     problemSolved: "Showcases software engineering experience, open-source projects, skills matrix, and interactive CLI."
-  },
-  {
-    id: "profile-readme",
-    name: "vishnu6301382491-dev Profile",
-    category: "Web Dev",
-    description: "Special GitHub profile repository containing developer documentation, tech stack badges, activity metrics, and goals.",
-    technologies: ["Markdown", "GitHub Badges", "Automation"],
-    repository: "https://github.com/vishnu6301382491-dev/vishnu6301382491-dev",
-    liveUrl: null,
-    image: "/speakai_preview.jpg",
-    featured: false,
-    problemSolved: "Centralizes developer profile bio, social channels, and activity badges on GitHub."
   }
 ];

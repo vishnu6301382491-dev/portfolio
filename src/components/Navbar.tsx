@@ -11,7 +11,9 @@ const links = [
   { name: 'Expertise', href: '#expertise' },
   { name: 'Skills', href: '#skills' },
   { name: 'Projects', href: '#projects' },
-  { name: 'Certifications', href: '#certifications' },
+  { name: 'Experience', href: '#experience' },
+  { name: 'Education', href: '#education' },
+  { name: 'Milestones', href: '#achievements' },
   { name: 'Contact', href: '#contact' },
 ]
 

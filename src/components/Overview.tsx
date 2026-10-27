@@ -9,23 +9,23 @@ gsap.registerPlugin(ScrollTrigger)
 const roots = [
   {
     n: '01',
-    title: 'Full Stack Web Engineering',
-    text: 'Next.js, React, Java micro-backends, Python Flask and REST APIs with role-based security.',
+    title: 'Java Full Stack Engineering',
+    text: 'Core Java, Servlets, JSP, REST microservices, and responsive client architectures with multi-role RBAC.',
   },
   {
     n: '02',
-    title: 'Data Science and ML Analytics',
-    text: 'Predictive modeling, atmospheric forecasting, computer vision fruit-quality sorting and dashboards.',
+    title: 'Relational Database Architecture',
+    text: 'MySQL schema design, relational normalization, ACID transaction integrity, and performant SQL queries.',
   },
   {
     n: '03',
-    title: 'Database and Microservices',
-    text: 'MySQL and MongoDB schema design with RBAC permissions.',
+    title: 'Data Science & Applied ML',
+    text: 'GA-KELM air quality prediction, computer vision classification, and interactive data telemetry dashboards.',
   },
   {
     n: '04',
-    title: 'Deployment and Git Workflow',
-    text: 'GitHub Pages deployments with verified live demos and agile team collaboration.',
+    title: 'Modern Frontend & CI/CD',
+    text: 'Next.js, React, Tailwind CSS, 19 public GitHub repositories, and 17+ live deployments shipped globally.',
   },
 ]
 

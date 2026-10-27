@@ -8,25 +8,26 @@ gsap.registerPlugin(ScrollTrigger)
 
 const items = [
   {
-    big: '11+',
-    count: 11,
-    title: 'Verified Deployments',
-    text: 'GitHub Pages live links you can open and try.',
+    big: '17+',
+    count: 17,
+    title: 'Live Deployments',
+    text: 'Active production web applications & live GitHub Pages demos.',
+  },
+  {
+    big: '19',
+    count: 19,
+    title: 'Public Repositories',
+    text: 'Engineered across Java Full Stack, Machine Learning, and Web stacks.',
+  },
+  {
+    big: '7.78',
+    title: 'B.Tech CGPA Honors',
+    text: 'Computer Science & Engineering (Data Science) academic distinction.',
   },
   {
     big: '01',
-    title: 'Industry Internships',
-    text: 'Web Development, REST APIs and Data Analysis.',
-  },
-  {
-    big: '02',
-    title: 'Academic Excellence',
-    text: 'Top percentile in Computer Science and Data Science coursework.',
-  },
-  {
-    big: '03',
-    title: 'Technical Leadership',
-    text: 'Agile team collaboration on shipped projects.',
+    title: 'Industry Internship',
+    text: 'Java Full Stack training & enterprise app delivery at TAP Academy.',
   },
 ]
 
@@ -45,14 +46,25 @@ export default function Achievements() {
         stagger: 0.12,
         scrollTrigger: { trigger: '.ach-grid', start: 'top 82%' },
       })
-      const o = { v: 0 }
-      gsap.to(o, {
-        v: 11,
+      const o1 = { v: 0 }
+      gsap.to(o1, {
+        v: 17,
         duration: 1.6,
         ease: 'power3.out',
         onUpdate: () => {
-          const el = document.querySelector('.ach-count')
-          if (el) el.textContent = Math.round(o.v) + '+'
+          const el = document.querySelector('.ach-count-0')
+          if (el) el.textContent = Math.round(o1.v) + '+'
+        },
+        scrollTrigger: { trigger: '.ach-grid', start: 'top 80%' },
+      })
+      const o2 = { v: 0 }
+      gsap.to(o2, {
+        v: 19,
+        duration: 1.6,
+        ease: 'power3.out',
+        onUpdate: () => {
+          const el = document.querySelector('.ach-count-1')
+          if (el) el.textContent = String(Math.round(o2.v))
         },
         scrollTrigger: { trigger: '.ach-grid', start: 'top 80%' },
       })
@@ -64,14 +76,14 @@ export default function Achievements() {
     <section id="achievements" ref={ref} className="relative px-6 py-32">
       <div id="certifications" className="absolute top-0 left-0 h-px w-px" />
       <div className="mx-auto max-w-6xl">
-        <p data-eyebrow className="eyebrow">
-          {'// 05 MILESTONES'}
+        <p data-eyebrow className="eyebrow glass pill inline-block px-4 py-1.5">
+          {'// 06 MILESTONES & IMPACT'}
         </p>
         <h2
           data-split
-          className="h-display mt-4 text-[clamp(30px,5vw,52px)] text-white"
+          className="h-display mt-6 text-[clamp(30px,5vw,52px)] text-white"
         >
-          Key Achievements
+          Key Milestones
         </h2>
         <div className="ach-grid mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((a, i) => (
@@ -81,10 +93,10 @@ export default function Achievements() {
             >
               <b
                 className={`${
-                  i === 0 ? 'ach-count ' : ''
+                  i === 0 ? 'ach-count-0 ' : i === 1 ? 'ach-count-1 ' : ''
                 }h-display text-4xl text-[var(--accent)]`}
               >
-                {i === 0 ? '0+' : a.big}
+                {i === 0 ? '0+' : i === 1 ? '0' : a.big}
               </b>
               <h3 className="h-display mt-6 text-lg text-white">{a.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-[var(--text-dim)]">

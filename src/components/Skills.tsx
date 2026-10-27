@@ -7,36 +7,45 @@ import { useSplitReveal } from '@/lib/useReveal'
 gsap.registerPlugin(ScrollTrigger)
 
 const rowA = [
+  'Java',
+  'Java Servlets',
+  'JSP',
+  'MySQL',
   'Next.js',
   'React',
-  'TypeScript',
-  'Java',
   'Python',
-  'TensorFlow',
-  'Node.js',
-  'MongoDB',
-  'MySQL',
+  'JavaScript',
+  'HTML5 & CSS3',
 ]
 const rowB = [
-  'Flask',
+  'Git & GitHub',
   'REST APIs',
+  'Razorpay API',
   'RBAC Security',
+  'Machine Learning',
   'Tailwind CSS',
-  'Glassmorphism',
-  'Transfer Learning',
-  'Data Analytics',
-  'Git and GitHub',
+  'Data Structures & Algorithms',
+  'MS Excel',
+]
+
+const softSkills = [
+  'Communication',
+  'Teamwork',
+  'Problem-Solving',
+  'Adaptability',
+  'Analytical Thinking',
+  'Agile Collaboration'
 ]
 
 const matrix = [
-  { name: 'Java', level: 'Advanced', pct: 90, note: 'OOP, Collections, Backend Services' },
-  { name: 'Python', level: 'Proficient', pct: 88, note: 'TensorFlow, Flask, Data Science' },
-  { name: 'JS and TypeScript', level: 'Proficient', pct: 85, note: 'ES6+, Next.js, React' },
-  { name: 'HTML5 and Modern CSS3', level: 'Mastery', pct: 95, note: 'Tailwind CSS, Glassmorphism, Flexbox/Grid' },
-  { name: 'MySQL', level: 'Advanced', pct: 85, note: 'Relational Schemas, Complex Queries, Joins' },
-  { name: 'MongoDB', level: 'Proficient', pct: 82, note: 'Mongoose, NoSQL, Aggregation' },
-  { name: 'Next.js and React', level: 'Advanced', pct: 88, note: 'API Routes, Vite, State Management' },
-  { name: 'Git, RBAC and AI', level: 'Proficient', pct: 88, note: 'GitHub, RBAC Security, Transfer Learning' },
+  { name: 'Java Full Stack', level: 'Mastery', pct: 92, note: 'Core Java, Servlets, JSP, OOP & Enterprise Web Architecture' },
+  { name: 'MySQL Database', level: 'Advanced', pct: 88, note: 'Relational Schema Design, Complex Queries, Joins & ACID Transactions' },
+  { name: 'Python & Data Science', level: 'Proficient', pct: 86, note: 'Machine Learning, GA-KELM, Predictive Analytics & Scientific Computing' },
+  { name: 'Next.js & React', level: 'Advanced', pct: 88, note: 'Modern React, Component Architecture, Hooks & State Management' },
+  { name: 'JavaScript & Web Dev', level: 'Advanced', pct: 90, note: 'ES6+, DOM Manipulation, Asynchronous Programming & AJAX' },
+  { name: 'HTML5 & Modern CSS3', level: 'Mastery', pct: 95, note: 'Tailwind CSS, Dark Glassmorphism, Responsive UI & CSS Grid' },
+  { name: 'Git & GitHub Tools', level: 'Advanced', pct: 90, note: 'Version Control, Branching Workflows, GitHub Pages & CI/CD' },
+  { name: 'REST APIs & RBAC', level: 'Proficient', pct: 88, note: 'API Architecture, Multi-Role Security, Razorpay Integration & Auth' },
 ]
 
 function Row({ items, reverse }: { items: string[]; reverse?: boolean }) {
@@ -100,7 +109,7 @@ export default function Skills() {
     <section id="skills" ref={ref} className="relative py-32">
       <div className="mx-auto max-w-4xl px-6 text-center">
         <p data-eyebrow className="eyebrow glass pill inline-block px-4 py-1.5">
-          {'// 02 COMPETENCIES'}
+          {'// 02 COMPETENCIES & TECH STACK'}
         </p>
         <h2
           data-split
@@ -110,10 +119,9 @@ export default function Skills() {
         </h2>
         <p
           data-fade
-          className="mx-auto mt-4 max-w-xl text-sm text-[var(--text-dim)]"
+          className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--text-dim)]"
         >
-          Full-stack web, backend services and applied machine learning, shipped
-          end to end.
+          Java Full Stack development, relational database engineering, applied machine learning, and modern web architectures.
         </p>
       </div>
 
@@ -124,7 +132,7 @@ export default function Skills() {
 
       <div className="skill-grid mx-auto mt-16 grid max-w-6xl gap-4 px-6 sm:grid-cols-2 lg:grid-cols-4">
         {matrix.map((s) => (
-          <div key={s.name} data-pct={s.pct} className="skill-card glass p-5">
+          <div key={s.name} data-pct={s.pct} className="skill-card glass p-5 transition-transform duration-500 hover:-translate-y-1">
             <div className="flex items-baseline justify-between">
               <h3 className="h-display text-lg text-white">{s.name}</h3>
               <span className="pct-num mono text-xs text-[var(--accent)]">
@@ -145,6 +153,23 @@ export default function Skills() {
             </p>
           </div>
         ))}
+      </div>
+
+      {/* Soft skills row */}
+      <div className="mx-auto mt-12 max-w-4xl px-6">
+        <div className="glass p-6 text-center">
+          <p className="eyebrow">{'// PROFESSIONAL & SOFT SKILLS'}</p>
+          <div className="mt-4 flex flex-wrap justify-center gap-2.5">
+            {softSkills.map((sk) => (
+              <span
+                key={sk}
+                className="mono rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-[var(--text)] transition-colors hover:border-[var(--accent)] hover:text-white"
+              >
+                ✦ {sk}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )
