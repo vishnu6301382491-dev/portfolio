@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HALDOREN — The Augmented Portfolio | Motion &amp; Creative Systems</title>
+  <meta name="description" content="One-screen augmented portfolio for Haldoren. Fuses cyberpunk optical thermal scanner with scroll-driven 3D laptop dive and punched paper tickets.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat+Brush&family=Inter+Tight:wght@100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green-900: #0b2f20;
+      --green-800: #11402c;
+      --green-700: #1a5a40;
+      --mint: #cfeee0;
+      --ink: #0d0f0e;
+      --paper: #ffffff;
+      --paper-cream: #f6f7f2;
+      --signal: #ff2d3d;
+      --signal-dim: rgba(255, 45, 61, 0.35);
+      --signal-glow: rgba(255, 45, 61, 0.65);
+      --stage-gradient: linear-gradient(180deg, #0c3523 0%, #14503a 45%, #9fd8bf 100%);
+      
+      --font-display: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-hand: 'Caveat Brush', cursive;
+      --font-ticket: 'Anton', sans-serif;
+
+      --mx: 50vw;
+      --my: 50vh;
+      --scan-radius: 130px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--green-900);
+      color: var(--paper);
+      font-family: var(--font-display);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      cursor: crosshair;
+    }
+
+    /* Accessibility Focus */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--mint);
+      outline-offset: 4px;
+    }
+
+    /* Screen Reader Only */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Preloader */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: var(--green-900);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      font-family: var(--font-mono);
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    #preloader.loaded {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .boot-counter {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--mint);
+      letter-spacing: 0.1em;
+    }
+    .boot-status {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--signal);
+      text-transform: uppercase;
+      animation: pulse 1s infinite alternate;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    /* Main Viewport Stage */
+    .stage {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--stage-gradient);
+    }
+
+    /* Subtle Studio Grid lines */
+    .stage::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-size: 60px 60px;
+      background-image: 
+        linear-gradient(to right, rgba(207, 238, 224, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(207, 238, 224, 0.04) 1px, transparent 1px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* -------------------------------------------------------------
+       LAYER 1: THERMAL AUGMENTED SCANNER UNDERLAY
+    -------------------------------------------------------------- */
+    .thermal-layer {
+      position: absolute;
+      inset: 0;
+      background: #150003;
+      z-index: 10;
+      pointer-events: none;
+      -webkit-mask-image: radial-gradient(circle var(--scan-radius) at var(--mx) var(--my), rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+      mask-image: radial-gradient(circle var(--scan-radius) at var(--mx) var(--my), rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+      transition: -webkit-mask-image 0.04s ease-out, mask-image 0.04s ease-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .thermal-grid {
+      position: absolute;
+      inset: 0;
+      background-size: 30px 30px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 45, 61, 0.25) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 45, 61, 0.25) 1px, transparent 1px);
+    }
+
+    .thermal-glitch-lines {
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, rgba(255,45,61,0.06), rgba(255,45,61,0.06) 1px, transparent 1px, transparent 3px);
+    }
+
+    .thermal-hud {
+      position: absolute;
+      inset: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: var(--signal);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    .thermal-wireframe-figure {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(520px, 80vw);
+      height: min(680px, 75vh);
+      border: 1px dashed var(--signal);
+      background: radial-gradient(circle at 50% 40%, rgba(255,45,61,0.35) 0%, rgba(255,45,61,0.08) 60%, transparent 80%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 50px rgba(255,45,61,0.3);
+    }
+
+    .thermal-wireframe-figure svg {
+      width: 80%;
+      height: 80%;
+      stroke: var(--signal);
+      fill: none;
+      filter: drop-shadow(0 0 8px var(--signal));
+    }
+
+    /* -------------------------------------------------------------
+       LAYER 2: DEFAULT BASE SCENE (GREEN STUDIO)
+    -------------------------------------------------------------- */
+    .base-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px 48px;
+      pointer-events: auto;
+    }
+
+    /* Top Paper Navigation Tags */
+    .nav-tags-container {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 30;
+    }
+
+    .paper-tag {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 650;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 12px 20px 8px;
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+      border-top: none;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .paper-tag::before {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--green-900);
+      opacity: 0.6;
+    }
+
+    .paper-tag:hover {
+      transform: translateY(4px);
+      background: var(--mint);
+    }
+
+    .paper-tag.tag-primary {
+      background: var(--mint);
+      color: var(--green-900);
+    }
+
+    /* Top Right Brand Badge */
+    .brand-badge {
+      position: absolute;
+      top: 32px;
+      right: 48px;
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.4;
+      color: var(--mint);
+      letter-spacing: 0.12em;
+      z-index: 25;
+    }
+    .brand-badge b {
+      color: var(--paper);
+      font-weight: 700;
+    }
+
+    /* Hero Left Mirrored Stats Arc */
+    .stats-arc {
+      position: absolute;
+      left: 48px;
+      bottom: 96px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 25;
+      font-family: var(--font-mono);
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .stat-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--signal);
+      box-shadow: 0 0 8px var(--signal);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--paper);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--mint);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* Central Hero Man with Laptop */
+    .hero-stage-center {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(620px, 90vw);
+      height: 82vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    .hero-photo-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .hero-silhouette {
+      width: auto;
+      height: 92%;
+      max-height: 720px;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 40px rgba(11, 47, 32, 0.7));
+      transform-origin: bottom center;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+    }
+
+    /* Massive Haldoren Display Typography */
+    .hero-title-container {
+      position: absolute;
+      top: 10%;
+      left: 48px;
+      max-width: 540px;
+      z-index: 22;
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      color: var(--mint);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-eyebrow i {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--signal);
+      box-shadow: 0 0 6px var(--signal);
+      display: inline-block;
+    }
+
+    .hero-wordmark {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(56px, 9.5vw, 130px);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: var(--paper);
+      text-transform: uppercase;
+      margin-top: 8px;
+      text-shadow: 0 10px 30px rgba(11, 47, 32, 0.8);
+    }
+
+    .hero-subtitle-box {
+      margin-top: 18px;
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-subtext {
+      font-size: clamp(14px, 1.4vw, 18px);
+      color: var(--mint);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-handwritten {
+      font-family: var(--font-hand);
+      font-size: 26px;
+      color: var(--paper);
+      transform: rotate(-3deg);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    /* Bottom HUD and Controls */
+    .stage-bottom-hud {
+      position: absolute;
+      bottom: 24px;
+      left: 48px;
+      right: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      z-index: 25;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--mint);
+      letter-spacing: 0.15em;
+    }
+
+    .dive-prompt-btn {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .dive-prompt-btn:hover {
+      background: var(--mint);
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .dive-prompt-btn svg {
+      transition: transform 0.3s ease;
+    }
+    .dive-prompt-btn:hover svg {
+      transform: translateY(3px);
+    }
+
+    .audio-toggle-btn {
+      background: rgba(17, 64, 44, 0.6);
+      backdrop-filter: blur(10px);
+      color: var(--mint);
+      border: 1px solid rgba(207, 238, 224, 0.2);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .audio-toggle-btn:hover {
+      background: rgba(26, 90, 64, 0.9);
+      color: var(--paper);
+    }
+
+    /* -------------------------------------------------------------
+       LAYER 3: 3D LAPTOP DIVE CAROUSEL
+    -------------------------------------------------------------- */
+    .laptop-dive-container {
+      position: absolute;
+      inset: 0;
+      z-index: 40;
+      perspective: 1400px;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .laptop-dive-container.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .laptop-frame {
+      position: relative;
+      width: min(1080px, 92vw);
+      height: min(720px, 86vh);
+      background: #0f1211;
+      border-radius: 20px;
+      border: 8px solid #232725;
+      box-shadow: 
+        0 40px 100px rgba(0, 0, 0, 0.8),
+        0 0 0 2px rgba(255, 255, 255, 0.1);
+      transform-style: preserve-3d;
+      transform: translateY(120px) scale(0.65) rotateX(16deg);
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.8s;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .laptop-dive-container.active .laptop-frame {
+      transform: translateY(0) scale(1) rotateX(0deg);
+    }
+
+    /* Laptop Top Bezel & Camera */
+    .laptop-bezel-top {
+      height: 36px;
+      background: #171b19;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+
+    .laptop-notch {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .laptop-cam {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #050706;
+      border: 1px solid rgba(255,255,255,0.15);
+      position: relative;
+    }
+    .laptop-cam::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      border-radius: 50%;
+      background: #39e388;
+      top: 1px;
+      right: 1px;
+    }
+
+    .laptop-header-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .laptop-close-dive-btn {
+      background: transparent;
+      border: none;
+      color: var(--mint);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+    .laptop-close-dive-btn:hover {
+      color: var(--signal);
+    }
+
+    /* Laptop Screen Workspace */
+    .laptop-screen-content {
+      flex: 1;
+      position: relative;
+      background: var(--green-900);
+      background-image: radial-gradient(circle at 50% 30%, #154e36 0%, #0b2f20 100%);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 36px 20px;
+    }
+
+    /* Ticket Deck Carousel */
+    .ticket-deck {
+      position: relative;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Punched Paper Ticket Style */
+    .paper-ticket {
+      position: absolute;
+      width: min(720px, 94%);
+      height: min(440px, 100%);
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 12px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.55);
+      display: flex;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateX(80px) scale(0.92);
+      pointer-events: none;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .paper-ticket.active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+      z-index: 10;
+    }
+
+    .paper-ticket.prev {
+      opacity: 0;
+      transform: translateX(-80px) scale(0.92);
+    }
+
+    /* Perforated Stub Left Side */
+    .ticket-stub {
+      width: 130px;
+      background: var(--paper-cream);
+      border-right: 2px dashed #b8c4be;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 16px;
+      flex-shrink: 0;
+    }
+
+    /* Authentic Punched Holes top and bottom of perforated line */
+    .ticket-stub::before, .ticket-stub::after {
+      content: '';
+      position: absolute;
+      right: -13px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #11402c;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+      z-index: 5;
+    }
+    .ticket-stub::before { top: -12px; }
+    .ticket-stub::after { bottom: -12px; }
+
+    .ticket-stub-num {
+      font-family: var(--font-ticket);
+      font-size: 32px;
+      color: var(--green-900);
+      line-height: 1;
+    }
+
+    .ticket-vertical-text {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: #63766c;
+      text-transform: uppercase;
+      margin: auto 0;
+    }
+
+    .ticket-barcode {
+      width: 100%;
+      height: 38px;
+      background-image: repeating-linear-gradient(
+        to right,
+        var(--ink) 0px, var(--ink) 2px,
+        transparent 2px, transparent 4px,
+        var(--ink) 4px, var(--ink) 7px,
+        transparent 7px, transparent 9px,
+        var(--ink) 9px, var(--ink) 10px,
+        transparent 10px, transparent 13px
+      );
+      opacity: 0.85;
+    }
+
+    /* Ticket Main Body */
+    .ticket-body {
+      flex: 1;
+      padding: 28px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .ticket-meta-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: #677c72;
+      text-transform: uppercase;
+    }
+
+    .ticket-title {
+      font-family: var(--font-ticket);
+      font-size: clamp(34px, 4.4vw, 52px);
+      letter-spacing: 0.02em;
+      line-height: 1;
+      color: var(--ink);
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    .ticket-desc {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #3b4540;
+      margin-top: 10px;
+      max-width: 480px;
+    }
+
+    .ticket-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .ticket-chip {
+      background: rgba(17, 64, 44, 0.08);
+      color: var(--green-900);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .ticket-actions-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid #e1e6e3;
+    }
+
+    .ticket-stamp {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--signal);
+      border: 1.5px solid var(--signal);
+      padding: 3px 8px;
+      letter-spacing: 0.15em;
+      transform: rotate(-4deg);
+      border-radius: 3px;
+    }
+
+    .ticket-btn {
+      background: var(--green-900);
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 10px 20px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .ticket-btn:hover {
+      background: var(--green-700);
+      transform: translateY(-1px);
+    }
+
+    /* Ticket Deck Navigation Bar */
+    .deck-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid rgba(207, 238, 224, 0.15);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--mint);
+    }
+
+    .deck-arrows {
+      display: flex;
+      gap: 12px;
+    }
+
+    .deck-arrow-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--green-800);
+      color: var(--mint);
+      border: 1px solid rgba(207, 238, 224, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .deck-arrow-btn:hover {
+      background: var(--mint);
+      color: var(--green-900);
+      transform: scale(1.06);
+    }
+
+    .deck-dots {
+      display: flex;
+      gap: 8px;
+    }
+    .deck-dot {
+      width: 24px;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(207, 238, 224, 0.25);
+      cursor: pointer;
+      transition: background 0.2s, width 0.2s;
+    }
+    .deck-dot.active {
+      background: var(--mint);
+      width: 42px;
+    }
+
+    /* -------------------------------------------------------------
+       CUSTOM OPTICAL SCANNER RETICLE
+    -------------------------------------------------------------- */
+    .scanner-reticle {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: calc(var(--scan-radius) * 2);
+      height: calc(var(--scan-radius) * 2);
+      border-radius: 50%;
+      border: 1.5px solid var(--signal-glow);
+      pointer-events: none;
+      z-index: 100;
+      transform: translate(calc(var(--mx) - var(--scan-radius)), calc(var(--my) - var(--scan-radius)));
+      transition: transform 0.04s ease-out;
+      box-shadow: 
+        0 0 20px rgba(255, 45, 61, 0.25),
+        inset 0 0 15px rgba(255, 45, 61, 0.12);
+    }
+
+    /* Crosshairs & Diagnostics */
+    .scanner-reticle::before, .scanner-reticle::after {
+      content: '';
+      position: absolute;
+      background: var(--signal);
+    }
+    .scanner-reticle::before {
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      opacity: 0.4;
+    }
+    .scanner-reticle::after {
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      opacity: 0.4;
+    }
+
+    .reticle-badge {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--signal);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 2px 8px;
+      border-radius: 2px;
+      white-space: nowrap;
+      text-transform: uppercase;
+    }
+
+    .reticle-telemetry {
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--signal);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+      text-shadow: 0 0 5px rgba(255,45,61,0.8);
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .scanner-reticle { display: none !important; }
+      .thermal-layer { display: none !important; }
+      .laptop-frame { transform: none !important; transition: none !important; }
+      .paper-ticket { transition: opacity 0.2s !important; transform: none !important; }
+    }
+
+    @media (max-width: 900px) {
+      .stats-arc { display: none; }
+      .base-layer { padding: 24px; }
+      .brand-badge { right: 24px; top: 24px; }
+      .stage-bottom-hud { left: 24px; right: 24px; }
+      .paper-ticket { flex-direction: column; height: 90%; }
+      .ticket-stub { width: 100%; height: 50px; border-right: none; border-bottom: 2px dashed #b8c4be; flex-direction: row; }
+      .ticket-stub::before { top: auto; bottom: -12px; left: -12px; }
+      .ticket-stub::after { top: auto; bottom: -12px; right: -12px; }
+      .ticket-vertical-text { writing-mode: horizontal-tb; transform: none; }
+      .ticket-barcode { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen Reader Announcements -->
+  <div id="a11y-status" class="sr-only" aria-live="polite">Haldoren augmented portfolio loaded. Hero view active.</div>
+
+  <!-- Preloader Boot Counter -->
+  <div id="preloader" role="status" aria-label="Loading augmented environment">
+    <div class="boot-counter" id="boot-count">00%</div>
+    <div class="boot-status">INITIALIZING OPTICAL SCANNER &amp; 3D STAGE</div>
+  </div>
+
+  <!-- Stage Viewport -->
+  <main class="stage" id="stage" tabindex="0" aria-label="Interactive Augmented Motion Portfolio">
+
+    <!-- -------------------------------------------------------------
+         LAYER 1: THERMAL AUGMENTED SCANNER UNDERLAY
+    -------------------------------------------------------------- -->
+    <div class="thermal-layer" aria-hidden="true">
+      <div class="thermal-grid"></div>
+      <div class="thermal-glitch-lines"></div>
+
+      <!-- Thermal HUD telemetry -->
+      <div class="thermal-hud">
+        <div style="display: flex; justify-content: space-between;">
+          <span>SYS // AUGMENTED_CORE_V4</span>
+          <span id="thermal-coord">X: 0000 | Y: 0000</span>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span>SPECTRAL FREQ: 142.840 MHz</span>
+          <span>THERMAL SIG: 98.4°C [LOCKED]</span>
+        </div>
+      </div>
+
+      <!-- Thermal Silhouette Figure in center stage -->
+      <div class="thermal-wireframe-figure">
+        <svg viewBox="0 0 200 300">
+          <circle cx="100" cy="50" r="30" stroke-width="2" stroke-dasharray="4 2"/>
+          <path d="M 50 140 Q 100 90 150 140 L 170 280 L 30 280 Z" stroke-width="2" />
+          <line x1="100" y1="80" x2="100" y2="280" stroke-width="1.5" stroke-dasharray="6 3"/>
+          <rect x="65" y="150" width="70" height="45" rx="3" stroke-width="2" />
+          <line x1="65" y1="175" x2="135" y2="175" stroke-width="1" stroke-dasharray="2 2"/>
+          <circle cx="100" cy="172" r="8" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- -------------------------------------------------------------
+         LAYER 2: BASE GREEN STUDIO HERO SCENE
+    -------------------------------------------------------------- -->
+    <div class="base-layer" id="base-layer">
+
+      <!-- Top Paper Tags Navigation -->
+      <nav class="nav-tags-container" aria-label="Main Portfolio Navigation">
+        <button class="paper-tag" data-target="hero">Home</button>
+        <button class="paper-tag" data-target="dive">Work (04)</button>
+        <button class="paper-tag" data-target="about">About</button>
+        <a href="mailto:contact@haldoren.design" class="paper-tag tag-primary">Discuss a project &rarr;</a>
+      </nav>
+
+      <!-- Top Right Studio Badge -->
+      <div class="brand-badge">
+        <b>HALDOREN</b> // AUGMENTED STUDIO<br>
+        COPENHAGEN &bull; 55.6761&deg; N, 12.5683&deg; E<br>
+        <span style="color: var(--paper); font-size: 10px;">AVAILABLE FOR S1 2026 DIRECTIVES</span>
+      </div>
+
+      <!-- Massive Display Wordmark and Hero Copy -->
+      <div class="hero-title-container">
+        <div class="hero-eyebrow">
+          <i aria-hidden="true"></i> CREATIVE DIRECTION &amp; SPATIAL MOTION
+        </div>
+        <h1 class="hero-wordmark">HALDOREN</h1>
+        <div class="hero-subtitle-box">
+          <span class="hero-subtext">Gateway to your <em>augmented brand</em></span>
+          <span class="hero-handwritten">&mdash; crafted frame by frame.</span>
+        </div>
+      </div>
+
+      <!-- Left Mirrored Stats Arc -->
+      <aside class="stats-arc" aria-label="Studio Statistics">
+        <div class="stat-item">
+          <div class="stat-dot" aria-hidden="true"></div>
+          <div>
+            <div class="stat-num">8+</div>
+            <div class="stat-label">Years in Motion</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-dot" aria-hidden="true"></div>
+          <div>
+            <div class="stat-num">40+</div>
+            <div class="stat-label">Case Films</div>
+          </div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-dot" aria-hidden="true"></div>
+          <div>
+            <div class="stat-num">95%</div>
+            <div class="stat-label">Repeat Clients</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Central Hero Figure Holding Laptop -->
+      <div class="hero-stage-center" id="hero-figure-container">
+        <div class="hero-photo-wrapper">
+          <svg class="hero-silhouette" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="suitGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#143f2d"/>
+                <stop offset="100%" stop-color="#0a281b"/>
+              </linearGradient>
+              <linearGradient id="laptopGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#343d38"/>
+                <stop offset="100%" stop-color="#111614"/>
+              </linearGradient>
+            </defs>
+            <circle cx="200" cy="110" r="55" fill="#f0d5c4" />
+            <path d="M 145 95 Q 200 45 255 95 C 255 70 230 50 180 50 C 145 50 145 80 145 95 Z" fill="#1b211e"/>
+            <rect x="165" y="100" width="30" height="16" rx="4" stroke="#111" stroke-width="3" fill="rgba(207,238,224,0.4)"/>
+            <rect x="205" y="100" width="30" height="16" rx="4" stroke="#111" stroke-width="3" fill="rgba(207,238,224,0.4)"/>
+            <line x1="195" y1="108" x2="205" y2="108" stroke="#111" stroke-width="3"/>
+            <path d="M 120 220 L 70 420 L 140 440 L 155 280 L 200 310 L 245 280 L 260 440 L 330 420 L 280 220 Q 200 170 120 220 Z" fill="url(#suitGrad)" />
+            <g id="hero-mini-laptop" transform="translate(130, 270)">
+              <rect x="0" y="0" width="140" height="90" rx="6" fill="url(#laptopGrad)" stroke="#4b5550" stroke-width="2"/>
+              <rect x="6" y="6" width="128" height="78" rx="3" fill="#11402c"/>
+              <text x="70" y="48" fill="#cfeee0" font-size="10" font-family="'JetBrains Mono', monospace" text-anchor="middle" letter-spacing="1">DIVE &darr;</text>
+              <line x1="10" y1="65" x2="130" y2="65" stroke="#ff2d3d" stroke-width="1.5"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Bottom HUD & Stage Controller -->
+      <footer class="stage-bottom-hud">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <span style="display: inline-flex; align-items: center; gap: 8px;">
+            <i style="width: 7px; height: 7px; border-radius: 50%; background: #39e388; display: inline-block;"></i>
+            DECK READY
+          </span>
+          <span style="opacity: 0.6;">|</span>
+          <span id="gesture-hint">SCROLL WHEEL OR PRESS DIVE</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <button class="dive-prompt-btn" id="dive-btn" aria-label="Dive camera into laptop screen">
+            <span>DIVE INTO DECK</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+          </button>
+          <button class="audio-toggle-btn" id="audio-btn" aria-pressed="false" aria-label="Toggle synthesized UI audio feedback">
+            <span id="audio-icon">&#128263;</span>
+            <span id="audio-label">AUDIO OFF</span>
+          </button>
+        </div>
+      </footer>
+
+    </div>
+
+    <!-- -------------------------------------------------------------
+         LAYER 3: 3D LAPTOP DIVE CASE STUDY DECK
+    -------------------------------------------------------------- -->
+    <section class="laptop-dive-container" id="laptop-dive" aria-label="Portfolio Case Studies Deck">
+      <div class="laptop-frame">
+        
+        <!-- Top Bezel & Camera -->
+        <div class="laptop-bezel-top">
+          <div class="laptop-notch">
+            <div class="laptop-cam" aria-hidden="true"></div>
+            <span class="laptop-header-title">HALDOREN_STUDIO_VIEWPORT // 4K 60FPS</span>
+          </div>
+          <button class="laptop-close-dive-btn" id="close-dive-btn" title="Return to Hero (Esc)">
+            <span>ESC &bull; RETURN TO HERO</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <!-- Laptop Internal Display -->
+        <div class="laptop-screen-content">
+
+          <!-- Ticket Deck -->
+          <div class="ticket-deck" id="ticket-deck">
+
+            <!-- TICKET 01 -->
+            <article class="paper-ticket active" data-index="0" id="case-1" aria-label="Case Study 1: Neo-Tokyo 2099">
+              <div class="ticket-stub">
+                <div class="ticket-stub-num">01</div>
+                <div class="ticket-vertical-text">REEL NO. 2099-CYBER</div>
+                <div class="ticket-barcode" aria-hidden="true"></div>
+              </div>
+              <div class="ticket-body">
+                <div>
+                  <div class="ticket-meta-top">
+                    <span>DIRECTION // CINEMATIC UI</span>
+                    <span>OCTOBER 2025</span>
+                  </div>
+                  <h2 class="ticket-title">NEO-TOKYO 2099</h2>
+                  <p class="ticket-desc">
+                    Spatial UI &amp; cyberpunk broadcast package developed for a dystopian sci-fi series. Features real-time optical aberration, wireframe holographic HUDs, and procedural sound design.
+                  </p>
+                  <div class="ticket-tags-row">
+                    <span class="ticket-chip">Unreal Engine 5.4</span>
+                    <span class="ticket-chip">After Effects</span>
+                    <span class="ticket-chip">Houdini FX</span>
+                    <span class="ticket-chip">C4D Redshift</span>
+                  </div>
+                </div>
+                <div class="ticket-actions-row">
+                  <span class="ticket-stamp">VERIFIED ARCHIVE</span>
+                  <button class="ticket-btn" onclick="alert('Case Study 01: Full breakdown assets and cinematic reel playback.')">EXPLORE CASE &rarr;</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- TICKET 02 -->
+            <article class="paper-ticket" data-index="1" id="case-2" aria-label="Case Study 2: Chronos Engine">
+              <div class="ticket-stub">
+                <div class="ticket-stub-num">02</div>
+                <div class="ticket-vertical-text">REEL NO. CHRON-08</div>
+                <div class="ticket-barcode" aria-hidden="true"></div>
+              </div>
+              <div class="ticket-body">
+                <div>
+                  <div class="ticket-meta-top">
+                    <span>SIMULATION // FLUID DYNAMICS</span>
+                    <span>JANUARY 2026</span>
+                  </div>
+                  <h2 class="ticket-title">CHRONOS ENGINE</h2>
+                  <p class="ticket-desc">
+                    High-viscosity digital liquid simulator and interactive volumetric lighting designed for high-end luxury watch campaigns and real-time interactive kiosks.
+                  </p>
+                  <div class="ticket-tags-row">
+                    <span class="ticket-chip">Three.js / WebGL</span>
+                    <span class="ticket-chip">GLSL Shaders</span>
+                    <span class="ticket-chip">Blender Octane</span>
+                  </div>
+                </div>
+                <div class="ticket-actions-row">
+                  <span class="ticket-stamp">FEATURED WORK</span>
+                  <button class="ticket-btn" onclick="alert('Case Study 02: Volumetric shader breakdown and WebGL test harness.')">EXPLORE CASE &rarr;</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- TICKET 03 -->
+            <article class="paper-ticket" data-index="2" id="case-3" aria-label="Case Study 3: Synapse AI">
+              <div class="ticket-stub">
+                <div class="ticket-stub-num">03</div>
+                <div class="ticket-vertical-text">REEL NO. SYN-AI-03</div>
+                <div class="ticket-barcode" aria-hidden="true"></div>
+              </div>
+              <div class="ticket-body">
+                <div>
+                  <div class="ticket-meta-top">
+                    <span>INTERFACE // NEURAL DESIGN</span>
+                    <span>NOVEMBER 2025</span>
+                  </div>
+                  <h2 class="ticket-title">SYNAPSE AI</h2>
+                  <p class="ticket-desc">
+                    Generative brand system and audio-reactive particle network visualizing live neural network weights during multi-modal inference and reasoning.
+                  </p>
+                  <div class="ticket-tags-row">
+                    <span class="ticket-chip">TouchDesigner</span>
+                    <span class="ticket-chip">Web Audio API</span>
+                    <span class="ticket-chip">Next.js Canvas</span>
+                  </div>
+                </div>
+                <div class="ticket-actions-row">
+                  <span class="ticket-stamp">AWWWARDS SOTD</span>
+                  <button class="ticket-btn" onclick="alert('Case Study 03: Neural particle system source and live interactive canvas.')">EXPLORE CASE &rarr;</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- TICKET 04 -->
+            <article class="paper-ticket" data-index="3" id="case-4" aria-label="Case Study 4: Kinetic Horizon">
+              <div class="ticket-stub">
+                <div class="ticket-stub-num">04</div>
+                <div class="ticket-vertical-text">REEL NO. HORIZON-X</div>
+                <div class="ticket-barcode" aria-hidden="true"></div>
+              </div>
+              <div class="ticket-body">
+                <div>
+                  <div class="ticket-meta-top">
+                    <span>AUTOMOTIVE // MOTION GRAPHICS</span>
+                    <span>AUGUST 2025</span>
+                  </div>
+                  <h2 class="ticket-title">KINETIC HORIZON</h2>
+                  <p class="ticket-desc">
+                    Global electric hypercar reveal film combining variable typography with high-speed virtual camera tracking and photorealistic CGI road simulations.
+                  </p>
+                  <div class="ticket-tags-row">
+                    <span class="ticket-chip">Cinema 4D</span>
+                    <span class="ticket-chip">Nuke Compositing</span>
+                    <span class="ticket-chip">Variable Type</span>
+                  </div>
+                </div>
+                <div class="ticket-actions-row">
+                  <span class="ticket-stamp">FWA OF THE DAY</span>
+                  <button class="ticket-btn" onclick="alert('Case Study 04: Virtual track telemetry and commercial cutdown reel.')">EXPLORE CASE &rarr;</button>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- Deck Bottom Navigation & Indicator -->
+          <div class="deck-nav-bar">
+            <div id="deck-counter">CASE 01 / 04</div>
+            <div class="deck-dots">
+              <div class="deck-dot active" data-goto="0" role="button" aria-label="Go to Case 1"></div>
+              <div class="deck-dot" data-goto="1" role="button" aria-label="Go to Case 2"></div>
+              <div class="deck-dot" data-goto="2" role="button" aria-label="Go to Case 3"></div>
+              <div class="deck-dot" data-goto="3" role="button" aria-label="Go to Case 4"></div>
+            </div>
+            <div class="deck-arrows">
+              <button class="deck-arrow-btn" id="prev-ticket-btn" aria-label="Previous case study">&larr;</button>
+              <button class="deck-arrow-btn" id="next-ticket-btn" aria-label="Next case study">&rarr;</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Optical Scanner Reticle Following Mouse -->
+    <div class="scanner-reticle" id="reticle" aria-hidden="true">
+      <div class="reticle-badge">OPTICAL SCANNER</div>
+      <div class="reticle-telemetry" id="reticle-diag">4.88 GHz // SCANNING</div>
+    </div>
+
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // --- STATE & REFERENCES ---
+      let isDived = false;
+      let activeIndex = 0;
+      const totalTickets = 4;
+      let audioEnabled = false;
+      let audioCtx = null;
+
+      const preloader = document.getElementById('preloader');
+      const bootCount = document.getElementById('boot-count');
+      const laptopDive = document.getElementById('laptop-dive');
+      const heroFigure = document.getElementById('hero-figure-container');
+      const reticle = document.getElementById('reticle');
+      const reticleDiag = document.getElementById('reticle-diag');
+      const thermalCoord = document.getElementById('thermal-coord');
+      const a11yStatus = document.getElementById('a11y-status');
+      const deckCounter = document.getElementById('deck-counter');
+      const tickets = document.querySelectorAll('.paper-ticket');
+      const dots = document.querySelectorAll('.deck-dot');
+      const audioBtn = document.getElementById('audio-btn');
+      const audioIcon = document.getElementById('audio-icon');
+      const audioLabel = document.getElementById('audio-label');
+
+      // --- PRELOADER SIMULATION ---
+      let progress = 0;
+      const bootInterval = setInterval(() => {
+        progress += Math.floor(Math.random() * 15) + 12;
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(bootInterval);
+          bootCount.textContent = '100%';
+          setTimeout(() => {
+            preloader.classList.add('loaded');
+            a11yStatus.textContent = 'Haldoren augmented portfolio ready. Move cursor to scan, scroll down to dive.';
+          }, 250);
+        } else {
+          bootCount.textContent = String(progress).padStart(2, '0') + '%';
+        }
+      }, 50);
+
+      // --- CURSOR TRACKING & CSS MASK ---
+      function updateCursor(e) {
+        const x = e.clientX;
+        const y = e.clientY;
+        document.documentElement.style.setProperty('--mx', x + 'px');
+        document.documentElement.style.setProperty('--my', y + 'px');
+
+        if (thermalCoord) {
+          thermalCoord.textContent = `X: ${String(x).padStart(4, '0')} | Y: ${String(y).padStart(4, '0')}`;
+        }
+      }
+      window.addEventListener('pointermove', updateCursor, { passive: true });
+
+      // --- SYNTHESIZED WEB AUDIO FEEDBACK ---
+      function playSynthTone(freq, type = 'sine', duration = 0.08, gainVal = 0.08) {
+        if (!audioEnabled) return;
+        try {
+          if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          }
+          if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+          }
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+          gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start();
+          osc.stop(audioCtx.currentTime + duration);
+        } catch (err) {
+          console.warn('Audio err:', err);
+        }
+      }
+
+      audioBtn.addEventListener('click', () => {
+        audioEnabled = !audioEnabled;
+        audioBtn.setAttribute('aria-pressed', String(audioEnabled));
+        if (audioEnabled) {
+          audioIcon.innerHTML = '&#128266;';
+          audioLabel.textContent = 'AUDIO ON';
+          playSynthTone(580, 'sine', 0.12, 0.12);
+        } else {
+          audioIcon.innerHTML = '&#128263;';
+          audioLabel.textContent = 'AUDIO OFF';
+        }
+      });
+
+      // --- DIVE CONTROLLER ---
+      function enterDive() {
+        if (isDived) return;
+        isDived = true;
+        laptopDive.classList.add('active');
+        reticle.style.opacity = '0';
+        playSynthTone(320, 'triangle', 0.25, 0.15);
+        a11yStatus.textContent = 'Entered 3D Laptop Deck. Active case study: ' + tickets[activeIndex].getAttribute('aria-label') + '. Use arrow keys to navigate, Escape to exit.';
+      }
+
+      function exitDive() {
+        if (!isDived) return;
+        isDived = false;
+        laptopDive.classList.remove('active');
+        reticle.style.opacity = '1';
+        playSynthTone(220, 'sine', 0.15, 0.1);
+        a11yStatus.textContent = 'Returned to Hero view. Move cursor to scan augmented self.';
+      }
+
+      document.getElementById('dive-btn').addEventListener('click', enterDive);
+      document.getElementById('close-dive-btn').addEventListener('click', exitDive);
+
+      // --- SCROLL WHEEL & GESTURE SCRUBBING ---
+      let scrollAccumulator = 0;
+      window.addEventListener('wheel', (e) => {
+        if (!isDived && e.deltaY > 30) {
+          scrollAccumulator += e.deltaY;
+          if (scrollAccumulator > 60) {
+            enterDive();
+            scrollAccumulator = 0;
+          }
+        } else if (isDived && e.deltaY < -30) {
+          scrollAccumulator += e.deltaY;
+          if (scrollAccumulator < -60) {
+            exitDive();
+            scrollAccumulator = 0;
+          }
+        }
+      }, { passive: true });
+
+      // Touch Swipe Gestures
+      let touchStartY = 0;
+      window.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+
+      window.addEventListener('touchend', (e) => {
+        const touchEndY = e.changedTouches[0].clientY;
+        const diff = touchStartY - touchEndY;
+        if (!isDived && diff > 50) {
+          enterDive();
+        } else if (isDived && diff < -50) {
+          exitDive();
+        }
+      }, { passive: true });
+
+      // --- TICKET CAROUSEL NAVIGATION ---
+      function showTicket(index) {
+        if (index < 0) index = totalTickets - 1;
+        if (index >= totalTickets) index = 0;
+        activeIndex = index;
+
+        tickets.forEach((t, i) => {
+          t.classList.remove('active', 'prev');
+          if (i === activeIndex) {
+            t.classList.add('active');
+          } else if (i < activeIndex) {
+            t.classList.add('prev');
+          }
+        });
+
+        dots.forEach((d, i) => {
+          d.classList.toggle('active', i === activeIndex);
+        });
+
+        deckCounter.textContent = `CASE 0${activeIndex + 1} / 0${totalTickets}`;
+        playSynthTone(440 + activeIndex * 80, 'sine', 0.07, 0.08);
+
+        // Update URL hash for deep linking
+        window.history.replaceState(null, '', `#case-${activeIndex + 1}`);
+
+        const activeTitle = tickets[activeIndex].querySelector('.ticket-title').textContent;
+        a11yStatus.textContent = `Viewing Case ${activeIndex + 1} of ${totalTickets}: ${activeTitle}`;
+      }
+
+      document.getElementById('prev-ticket-btn').addEventListener('click', () => showTicket(activeIndex - 1));
+      document.getElementById('next-ticket-btn').addEventListener('click', () => showTicket(activeIndex + 1));
+
+      dots.forEach((d) => {
+        d.addEventListener('click', () => {
+          const goto = parseInt(d.getAttribute('data-goto'), 10);
+          showTicket(goto);
+        });
+      });
+
+      // Paper nav buttons
+      document.querySelectorAll('.paper-tag[data-target]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const target = btn.getAttribute('data-target');
+          if (target === 'dive') {
+            enterDive();
+          } else if (target === 'hero') {
+            exitDive();
+          } else if (target === 'about') {
+            alert('Haldoren Motion Studio Copenhagen. Fusing bespoke creative direction with generative 3D physics.');
+          }
+        });
+      });
+
+      // --- KEYBOARD CONTROLS ---
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          exitDive();
+        } else if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+          if (!isDived) {
+            e.preventDefault();
+            enterDive();
+          }
+        } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+          if (isDived) {
+            e.preventDefault();
+            exitDive();
+          }
+        } else if (isDived) {
+          if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            showTicket(activeIndex + 1);
+          } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            showTicket(activeIndex - 1);
+          } else if (['1', '2', '3', '4'].includes(e.key)) {
+            showTicket(parseInt(e.key, 10) - 1);
+          }
+        }
+      });
+
+      // --- INITIALIZE DEEP LINK HASH ---
+      if (window.location.hash.startsWith('#case-')) {
+        const caseNum = parseInt(window.location.hash.replace('#case-', ''), 10);
+        if (!isNaN(caseNum) && caseNum >= 1 && caseNum <= totalTickets) {
+          activeIndex = caseNum - 1;
+          showTicket(activeIndex);
+          enterDive();
+        }
+      }
+
+    })();
+  </script>
+</body>
+</html>
