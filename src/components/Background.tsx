@@ -12,16 +12,37 @@ export default function Background() {
   const haze2 = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    gsap.to(bar.current, {
-      scaleX: 1,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: document.body,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 0.2,
-      },
-    })
+    // Finish loading bar on window load / route ready, then fade out and hide completely
+    const finishLoader = () => {
+      if (!bar.current) return
+      gsap.to(bar.current, {
+        scaleX: 1,
+        duration: 0.4,
+        ease: 'power2.out',
+        onComplete: () => {
+          gsap.to(bar.current, {
+            opacity: 0,
+            duration: 0.4,
+            delay: 0.2,
+            onComplete: () => {
+              if (bar.current) bar.current.style.display = 'none'
+            },
+          })
+        },
+      })
+    }
+
+    if (document.readyState === 'complete') {
+      finishLoader()
+    } else {
+      window.addEventListener('load', finishLoader)
+      const timer = setTimeout(finishLoader, 1200)
+      return () => {
+        window.removeEventListener('load', finishLoader)
+        clearTimeout(timer)
+      }
+    }
+
     gsap.to([haze1.current, haze2.current], {
       yPercent: (i) => (i === 0 ? -30 : 25),
       ease: 'none',

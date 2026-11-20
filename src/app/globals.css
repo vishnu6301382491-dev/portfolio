@@ -11,6 +11,22 @@
   --accent: #ede9ff;
   --green: #4ade80;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Hero accent — cyber red spotlight only */
+  --signal: #ff2d3d;
+  --signal-dim: rgba(255, 45, 61, 0.35);
+}
+
+/* Registered CSS custom properties for hero edge-fade @property animation */
+@property --mt { syntax: '<number>'; inherits: false; initial-value: 0; }
+@property --m0 { syntax: '<number>'; inherits: false; initial-value: 1; }
+@property --mb { syntax: '<number>'; inherits: false; initial-value: 0; }
+@property --ms { syntax: '<number>'; inherits: false; initial-value: 1; }
+@property --border-angle { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+
+
+body.hero-locked {
+  overflow: hidden !important;
+  touch-action: none;
 }
 
 html.lenis, html.lenis body {
@@ -19,6 +35,12 @@ html.lenis, html.lenis body {
 
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
+}
+
+html {
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+  background-color: #07080b;
 }
 
 body {
@@ -367,42 +389,17 @@ body {
   border-color: var(--accent);
 }
 
-.proj-track {
-  display: flex;
-  gap: 28px;
-  width: max-content;
-  will-change: transform;
-  padding: 0 calc(50vw - min(260px, 41vw));
-}
-
 .proj-card {
   position: relative;
-  width: min(520px, 82vw);
-  overflow: hidden;
-  will-change: transform, filter;
-}
-
-.proj-thumb {
-  height: 150px;
-  background: linear-gradient(135deg, #1d1630, #3a2a63 55%, #181322);
-}
-
-.proj-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.14), transparent 60%);
-  transition: opacity 0.4s;
-}
-
-.proj-card:hover::after {
-  opacity: 1;
-}
-
-.proj-card:hover {
-  border-color: rgba(255, 255, 255, 0.28);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 20px;
+  isolation: isolate;
+  will-change: transform;
 }
 
 /* Education timeline */
@@ -567,9 +564,14 @@ body {
   left: 0;
   top: 0;
   pointer-events: none;
-  z-index: 300;
+  z-index: 30;
   opacity: 0;
   display: none;
+}
+
+/* Ensure reveal content is visible by default in CSS */
+[data-split], [data-eyebrow], [data-fade], .reveal, .skill-card, .root-card, .ach-card, .exp-card, .tl-item {
+  opacity: 1;
 }
 
 .cursor-dot {
@@ -591,4 +593,97 @@ body {
     display: block;
   }
 }
+
+@keyframes badgeSway {
+  0%, 100% {
+    transform: rotate(-1.1deg);
+  }
+  50% {
+    transform: rotate(1.1deg);
+  }
+}
+
+@keyframes heroBob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+/* Projects Section Styles */
+.projects-grid {
+  display: grid;
+  gap: 28px;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  align-items: stretch;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 700px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1100px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.projects-grid > * {
+  min-width: 0;
+}
+
+@keyframes spinBorder {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+.conic-featured-border {
+  position: absolute;
+  inset: -1.5px;
+  border-radius: 22px;
+  background: conic-gradient(from var(--border-angle), transparent 25%, #ff2d3d 50%, transparent 75%);
+  animation: spinBorder 8s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes skeletonShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, #12131b 25%, #232534 50%, #12131b 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.8s infinite linear;
+}
+
+::view-transition-old(.project-card-vt),
+::view-transition-new(.project-card-vt) {
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid *,
+  .proj-card,
+  .conic-featured-border {
+    animation: none !important;
+    transition: opacity 0.2s ease !important;
+    transform: none !important;
+  }
+}
+
 

@@ -2,47 +2,78 @@
 import { useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import SplitType from 'split-type'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// [data-split] headings rise by character, [data-eyebrow] slide in, [data-fade] fade up and de-blur
+// Global failsafe timer ensuring content is never stuck at opacity 0
+if (typeof window !== 'undefined') {
+  const triggerFailsafe = () => {
+    document
+      .querySelectorAll<HTMLElement>(
+        '.reveal, [data-split], [data-eyebrow], [data-fade], .skill-card, .root-card, .ach-card, .exp-card, .tl-item'
+      )
+      .forEach((el) => {
+        el.classList.add('in')
+        el.style.opacity = '1'
+        el.style.transform = 'none'
+        el.style.filter = 'none'
+      })
+  }
+
+  // 2.5s absolute failsafe
+  setTimeout(triggerFailsafe, 2500)
+
+  // Document fonts ready + window load triggers
+  if (document.fonts) {
+    document.fonts.ready.then(() => {
+      ScrollTrigger.refresh()
+    })
+  }
+  window.addEventListener('load', () => {
+    ScrollTrigger.refresh()
+  })
+}
+
 export function useSplitReveal(scope: React.RefObject<HTMLElement>) {
   useEffect(() => {
-    if (!scope.current) return
-    const ctx = gsap.context(() => {
-      scope.current!.querySelectorAll<HTMLElement>('[data-split]').forEach((el) => {
-        const split = new SplitType(el, { types: 'lines,chars' })
-        split.lines?.forEach((l) => (l.style.overflow = 'hidden'))
-        gsap.from(split.chars, {
-          yPercent: 110,
-          opacity: 0,
-          duration: 0.9,
-          ease: 'expo.out',
-          stagger: 0.02,
-          scrollTrigger: { trigger: el, start: 'top 85%' },
+    const el = scope.current
+    if (!el || typeof window === 'undefined') return
+
+    // Reveal using IntersectionObserver with threshold 0 and rootMargin "0px 0px -10% 0px"
+    const targets = el.querySelectorAll<HTMLElement>('[data-split], [data-eyebrow], [data-fade], .reveal')
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const target = entry.target as HTMLElement
+            target.classList.add('in')
+            gsap.to(target, {
+              opacity: 1,
+              y: 0,
+              x: 0,
+              filter: 'none',
+              duration: 0.8,
+              ease: 'power3.out',
+              clearProps: 'filter',
+            })
+            observer.unobserve(target)
+          }
         })
-      })
-      scope.current!.querySelectorAll('[data-eyebrow]').forEach((el) =>
-        gsap.from(el, {
-          x: -24,
-          opacity: 0,
-          duration: 0.7,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 90%' },
-        })
-      )
-      scope.current!.querySelectorAll('[data-fade]').forEach((el) =>
-        gsap.from(el, {
-          y: 28,
-          opacity: 0,
-          filter: 'blur(6px)',
-          duration: 0.9,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%' },
-        })
-      )
-    }, scope)
-    return () => ctx.revert()
+      },
+      { threshold: 0, rootMargin: '0px 0px -10% 0px' }
+    )
+
+    targets.forEach((t) => observer.observe(t))
+
+    // Refresh ScrollTrigger once fonts and images settle
+    if (document.fonts) {
+      document.fonts.ready.then(() => ScrollTrigger.refresh())
+    }
+
+    return () => {
+      targets.forEach((t) => observer.unobserve(t))
+      observer.disconnect()
+    }
   }, [scope])
 }
